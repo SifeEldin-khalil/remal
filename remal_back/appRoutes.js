@@ -81,7 +81,7 @@ Remal Team `,
 //middelwares========================
 
 router.get("/api", (req, res) => {
-  res.send("Hello, Your app is running");
+  res.send("Hello, Your app is running fully functional");
 });
 
 // //Orders========================================================================
