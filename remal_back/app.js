@@ -22,29 +22,3 @@ app.listen(port, () => {
   console.log(`Apppp listening at http://localhost:${port}`)
 });
 
-// https.createServer(options, app)
-// .listen(port, () => {
-//   console.log('Example app listening on https://localhost:3000/')
-// })
-
-
-//serve static files===============================
-
-// app.use(express.static(path.join(__dirname, 'dist/on-printing-app')));
-// app.get('/*', function(req, res) {
-//  res.sendFile(path.join(__dirname, 'dist/on-printing-app/index.html'));
-// });
-
-//Errorhandlers===============================
-
-// app.use((req, res, next)=> {
-//   const err = new Error('Not Found');
-//   err.status=404;
-//   next(err);
-// });
-
-// app.use((err,req, res, next)=> {
-//   res.locals.error = err ;
-//   res.json({ error: `${err.status}` })
-//   // res.send(`Error: Page is not Found ${err.status}`);
-// });
