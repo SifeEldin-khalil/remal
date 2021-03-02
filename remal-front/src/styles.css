@@ -35,7 +35,7 @@ a { font-family: 'Montserrat'!important; font-weight:normal!important;  }
 }
 
 footer {
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
 }
@@ -77,4 +77,17 @@ mat-expansion-panel-header{
   color: white !important;
   border-color: #399dd7 !important;
   background-color: #399dd7 !important;
+}
+
+hr{
+  width: 200px;
+}
+
+.partener-section{
+  background-color: #cccaca;
+  padding: 80px; ;
+}
+
+.fas{
+color: #105c80;
 }
