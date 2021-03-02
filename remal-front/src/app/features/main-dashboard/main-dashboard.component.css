@@ -1,0 +1,14 @@
+.center-cards{
+    justify-content: space-evenly;
+}
+
+.carousel .carousel-item {
+    transition-duration: 0.9s;
+}
+
+.animated {
+    visibility: visible !important;
+}
+.hide-on-init {
+    visibility: hidden;
+}
