@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MainDashboardComponent } from './features/main-dashboard/main-dashboard.component';
+import { MainHomeComponent } from './features/main-home/main-home.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
-  { path:'Dashboard', component:MainDashboardComponent}
+  { path: '', redirectTo: 'Home', pathMatch: 'full' },
+  { path:'Home', component:MainHomeComponent}
 ];
 
 @NgModule({

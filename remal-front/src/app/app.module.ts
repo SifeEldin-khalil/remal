@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { MainDashboardModule } from './features/main-dashboard/main-dashboard.module';
+import { MainHomeModule } from './features/main-home/main-home.module';
 
 
 @NgModule({
@@ -17,7 +17,7 @@ import { MainDashboardModule } from './features/main-dashboard/main-dashboard.mo
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
-    MainDashboardModule
+    MainHomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
