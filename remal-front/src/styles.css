@@ -86,10 +86,38 @@ hr{
 }
 
 .partener-section{
-  background-color: #cccaca;
-  padding: 80px; ;
+  padding: 2vw;
+  justify-content: space-evenly;
 }
 
+.logos{
+  max-width: 9vw;
+}
+.contact-head-img{
+  max-width: 20vw;
+}
+.about-head-img{
+  max-width: 30vw;
+}
 .fas{
 color: #105c80;
+}
+.cap_letter{
+  color: #105c80;
+  font-size: xx-large;
+}
+.main_btn{
+  color: white;
+  border: none;
+  border-radius: 1vw;
+  padding: 0.5vw 2vw;
+  background-color: #105c80;
+}
+.mission_icon{
+  max-width:4%; 
+  margin-right: 2vw;
+}
+.grow-year{
+  padding-right: 1vw;
+  font-size: x-large;
 }
