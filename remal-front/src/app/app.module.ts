@@ -5,19 +5,25 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { MainDashboardModule } from './features/main-dashboard/main-dashboard.module';
+import { MainHomeModule } from './features/main-home/main-home.module';
+import { CareerComponent } from './features/career/career.component';
+import { AboutComponent } from './features/about/about.component';
+import { ContactComponent } from './features/contact/contact.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CareerComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
-    MainDashboardModule
+    MainHomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

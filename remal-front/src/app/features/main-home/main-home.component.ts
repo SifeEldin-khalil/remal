@@ -2,11 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbCarousel } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-main-dashboard',
-  templateUrl: './main-dashboard.component.html',
-  styleUrls: ['./main-dashboard.component.css'],
+  selector: 'app-main-home',
+  templateUrl: './main-home.component.html',
+  styleUrls: ['./main-home.component.css'],
 })
-export class MainDashboardComponent implements OnInit {
+export class MainHomeComponent implements OnInit {
   
   @ViewChild('ngcarousel', { static: true }) ngCarousel: NgbCarousel;
   constructor() { }

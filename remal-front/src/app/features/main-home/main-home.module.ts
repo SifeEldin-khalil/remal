@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MainDashboardComponent } from './main-dashboard.component';
+import { MainHomeComponent } from './main-home.component';
 import { BrowserModule } from '@angular/platform-browser';
 
 
@@ -13,7 +13,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
-    MainDashboardComponent
+    MainHomeComponent
   ],
   imports: [
     CommonModule,
@@ -28,4 +28,4 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SharedModule
    ]
 })
-export class MainDashboardModule { }
+export class MainHomeModule { }
