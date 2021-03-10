@@ -1,0 +1,61 @@
+<app-slider [coverImages]="coverImages"></app-slider>
+<!-- ===================About us section===============================-->
+<section id="whoWeAreId" class="section dark-grey-text text-center">
+    <div class="container mt-5 mb-5">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h1>
+                    Who We Are
+                </h1>
+                <hr>
+            </div>
+            <div class="col-md-12 mt-5">
+                <p style="text-align: center;">
+                    OUR MISSION is to provide a friendly comfortable atmosphere where the customers can
+                    receive quality food, drinks and service at a reasonable price.
+                </p>
+                <p style="text-align: center;">
+                    OUR VISION is to be one of the most unique food and beverage chain in Middle East ,
+                    providing quality customer satisfaction and friendly atmosphere
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===================End About us section===============================-->
+<section id="galleryId" class="section dark-grey-text text-center">
+    <div class="container mt-5 mb-5">
+        <div class="row mt-5">
+            <div class="col-md-12">
+                <h1>
+                    Our Gallery
+                </h1>
+                <hr>
+            </div>
+            <div class="col-md-12 mt-5">
+                <app-gallery></app-gallery>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===================End gallery section===============================-->
+
+<!-- ===================Contact section===============================-->
+
+<section id="contactId" class="section dark-grey-text text-center">
+    <div class="container mt-5 mb-5">
+        <div class="row mt-5">
+            <div class="col-md-6 mt-5">
+               
+            </div>
+            <div class="col-md-6 mt-5">
+                <app-contact-form [contactForm]="contactForm"> </app-contact-form>
+                <div class="text-center">
+                    <button  class="main_btn">Send Message</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================End contact section===============================-->

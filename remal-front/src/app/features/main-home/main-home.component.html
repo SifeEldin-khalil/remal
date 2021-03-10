@@ -1,79 +1,63 @@
-<div id="slider">
-    <!-- ===================Slider section===================== -->
-    <mdb-carousel class="carousel slide " [animation]="'slide'" id="slider">
-        <mdb-carousel-item>
-            <div class="view w-100">
-                <img class="d-block w-100 responsive" src="assets/img/others/6.jpg" alt="First slide">
-                <div class="mask  waves-light" mdbWavesEffect></div>
-            </div>
-            <div class="carousel-caption">
-                <h2 class="responsive-sm" style="font-size: 50px;">The Most <br> Prestigious Test</h2>
-            </div>
-        </mdb-carousel-item>
-        <mdb-carousel-item>
-            <div class="view w-100">
-                <img class="d-block w-100 responsive" src="assets/img/others/4.jpg" alt="Second slide">
-                <div class="mask  waves-light" mdbWavesEffect></div>
-            </div>
-            <div class="carousel-caption">
-            </div>
-        </mdb-carousel-item>
-        <mdb-carousel-item>
-            <div class="view w-100">
-                <img class="d-block w-100 responsive" src="assets/img/others/5.jpg" alt="Third slide">
-                <div class="mask  waves-light" mdbWavesEffect></div>
-            </div>
-            <div class="carousel-caption">
-            </div>
-        </mdb-carousel-item>
-    </mdb-carousel>
-
-</div>
-<!-- ===================End Slider section===================== -->
-
+<app-slider [coverImages]="coverImages"></app-slider>
 <!-- ===================About us section===============================-->
-<section id="whoWeAreId" class="section dark-grey-text text-center">
+<section id="figuresId" class="mt-5 section dark-grey-text text-center">
     <div class="container mt-5 mb-5">
-        <div class="row mt-5">
-            <div class="col-md-12">
-                <h1>
-                    Who We Are
-                </h1>
-                <hr>
+        <div>
+            <h1>
+                REMAL IN FIGURES
+            </h1>
+            <hr>
+            <div class="row col-xs-6 mt-5">
+                <img class="img-fluid" src="assets/img/others/about.jpg">
             </div>
-            <div class="col-md-12">
-                <p style="text-align: center;">
-                    Remal International was established in 2011 and has
-                    been active in the Qatar market as a renowned system
-                    integrator for Fire & Safety, Security, and ELV system.
-                </p>
+            <div class="col-xs-3 col-sm-offset-4 overlay-text text-left">
+                <ul>
+                    <h5>
+                        Remal International was established in 2011 and has been active in the Qatar market as a
+                        renowned system integrator for Fire & Safety, Security, and ELV system.
+                    </h5>
+                    <h5>
+                        More than 200 completed projects and keep onincreasing.
+                    </h5>
+                    <h5>
+                        Projects worth of 65.000.000 in 2018.
+                    </h5>
+                    <h5>
+                        More than 400 employees that work together to fulfiltheir mission and soon we will reach 500.
+                    </h5>
+                </ul>
             </div>
         </div>
+
     </div>
 </section>
 <!-- ===================End About us section===============================-->
 
 <!-- ===================Company Cards section===================== -->
 <section id="companyCardsId" class="section dark-grey-text text-center">
-    <div class="container">
-        <div class="col-md-12">
+    <div class="container  mt-5 mb-5">
+        <!-- <div class="row col-md-12"> -->
             <h1>
                 Our Companies
             </h1>
             <hr>
-        </div>
+        <!-- </div> -->
         <div class="row center-cards">
             <div class="col-md-5 mt-5">
-                <app-company-card></app-company-card>
+                <app-company-card [companyImage]="'assets/img/circle.jpg'" [companyName]="getProjects()">
+                </app-company-card>
             </div>
             <div class="col-md-5 mt-5">
-                <app-company-card></app-company-card>
+                <app-company-card [companyImage]="'assets/img/circle.jpg'" [companyName]="getLighting()">
+                </app-company-card>
             </div>
             <div class="col-md-5 mt-5">
-                <app-company-card></app-company-card>
+                <app-company-card [companyImage]="'assets/img/circle.jpg'" [companyName]="getFoodAndBeverage()">
+                </app-company-card>
             </div>
             <div class="col-md-5 mt-5">
-                <app-company-card></app-company-card>
+                <app-company-card [companyImage]="'assets/img/circle.jpg'" [companyName]="getRealEstate()">
+                </app-company-card>
             </div>
 
         </div>
@@ -121,3 +105,5 @@
     </div>
 </section>
 <!-- ===================End Clients section===============================-->
+
+

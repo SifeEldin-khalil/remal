@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
         $('nav').removeClass('white');
         $('nav').addClass('shrink');
       }
-      console.log( $('nav').classList);
     });
   }
 
