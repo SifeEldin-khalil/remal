@@ -18,10 +18,11 @@ import { GalleryComponent } from './gallery/gallery.component';
 // gallery component
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { HttpClientModule} from '@angular/common/http';
+import { CareerCardComponent } from './career-card/career-card.component';
 
 
 @NgModule({
-  declarations: [CompanyCardComponent, ContactFormComponent, SliderComponent, GalleryComponent],
+  declarations: [CompanyCardComponent, ContactFormComponent, SliderComponent, GalleryComponent, CareerCardComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -35,7 +36,8 @@ import { HttpClientModule} from '@angular/common/http';
     CompanyCardComponent,
     ContactFormComponent,
     SliderComponent,
-    GalleryComponent
+    GalleryComponent,
+    CareerCardComponent
   ],
   providers: [ CompanyCardComponent ],
 
