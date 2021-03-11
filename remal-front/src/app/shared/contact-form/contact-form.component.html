@@ -1,0 +1,38 @@
+<form [formGroup]="contactForm" class="example-form">
+    <div class="form-group" style="align-items:center">
+      <h3 class="mb-2 mt-2"> Get in touch</h3>
+      <mat-form-field appearance="legacy" style="width: 70%;" class="example-full-width">
+        <mat-label>Your name <a style="color: red;">*</a></mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="legacy" style="width: 70%;" class="example-full-width">
+        <mat-label>Your email<a style="color: red;">*</a> </mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+
+    </div>
+
+
+    <div class="form-group">
+      <mat-form-field appearance="legacy" style="width: 70%;" class="example-full-width">
+        <mat-label>Phone number</mat-label>
+        <input matInput formControlName="phoneNumber">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field appearance="legacy" style="width: 70%;" class="example-full-width">
+        <mat-label>Your message <a style="color: red;">*</a></mat-label>
+        <textarea matInput formControlName="msg" rows="2" cols="80"></textarea>
+      </mat-form-field>
+    </div>
+
+    <!-- <div class="form-group">
+      <button class="btn white-text black ml-4"
+        style="background-color: #399dd7 !important; ">Submit</button>
+    </div> -->
+
+  </form>

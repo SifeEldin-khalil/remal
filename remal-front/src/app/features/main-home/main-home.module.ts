@@ -1,30 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MainHomeComponent } from './main-home.component';
-import { BrowserModule } from '@angular/platform-browser';
-
-
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
+import { CareerComponent } from './career/career.component';
 
 
 @NgModule({
   declarations: [
-    MainHomeComponent
+    MainHomeComponent,
+    ContactComponent,
+    AboutComponent,
+    CareerComponent
   ],
   imports: [
     CommonModule,
-    BrowserModule,
-    MDBBootstrapModule.forRoot(),
-    NgbModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-    HttpClientModule,
-    // BrowserAnimationsModule,
     SharedModule
    ]
 })

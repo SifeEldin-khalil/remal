@@ -121,3 +121,11 @@ color: #105c80;
   padding-right: 1vw;
   font-size: x-large;
 }
+
+.fas{
+  padding-right: 1rem;
+}
+
+.center-cards{
+  justify-content: space-evenly;
+}
