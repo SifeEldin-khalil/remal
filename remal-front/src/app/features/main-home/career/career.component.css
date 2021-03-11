@@ -1,6 +1,6 @@
 .img-contain {
-    width: auto;
-    height: 400px;
+    width: 100%;
+    height: 40vw;
 }
 
 img {
