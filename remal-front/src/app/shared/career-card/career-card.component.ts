@@ -12,4 +12,8 @@ export class CareerCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onClickCard(){
+    alert('Are you sure you want to apply for this job')
+  }
+
 }
