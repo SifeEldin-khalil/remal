@@ -5,19 +5,18 @@
 .animated {
     visibility: visible !important;
 }
+
 .hide-on-init {
     visibility: hidden;
 }
 
 .overlay-text {
-    font-size:2vw;
+    font-size: 2vw;
     /* float:right; */
     margin-left: 40%;
-    width:65%;
+    width: 65%;
     padding: 1.5vw;
-    top: -3vw;
-    background:#f7f7f7;
-    position:relative;
-    
+    top: -5vw;
+    background: #f7f7f7;
+    position: relative;
 }
-

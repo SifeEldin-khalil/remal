@@ -10,7 +10,7 @@ import { SubCompaniesModule } from './features/sub-companies/sub-companies.modul
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

@@ -4,10 +4,12 @@ import { AboutComponent } from './features/main-home/about/about.component';
 import { CareerComponent } from './features/main-home/career/career.component';
 import { ContactComponent } from './features/main-home/contact/contact.component';
 import { MainHomeComponent } from './features/main-home/main-home.component';
+import { FirstClassComponent } from './features/sub-companies/first-class/first-class.component';
 import { FoodBeverageComponent } from './features/sub-companies/food-beverage/food-beverage.component';
 import { LightingComponent } from './features/sub-companies/lighting/lighting.component';
 import { ProjectsComponent } from './features/sub-companies/projects/projects.component';
 import { RealEstateComponent } from './features/sub-companies/real-estate/real-estate.component';
+import { SecurityComponent } from './features/sub-companies/security/security.component';
 
 
 const routes: Routes = [
@@ -19,7 +21,10 @@ const routes: Routes = [
   { path:'Lighting', component:LightingComponent},
   { path:'Food&Beverage', component:FoodBeverageComponent},
   { path:'RealEstate', component:RealEstateComponent},
-  { path:'Projects', component:ProjectsComponent}
+  { path:'Projects', component:ProjectsComponent},
+  { path:'FirstClass', component:FirstClassComponent},
+  { path:'Security', component:SecurityComponent}
+
 
 
 

@@ -16,20 +16,18 @@ export class MainHomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getLighting(): string {
-    return SubCompaniesNames.LIGHTING;
+  getEgyptProjects(): string[] {
+    var egProjects:string[];
+    egProjects=[SubCompaniesNames.PROJECTS,SubCompaniesNames.LIGHTING,SubCompaniesNames.FOOD_AND_BEVERAGE,SubCompaniesNames.REAL_ESTATE]
+    return egProjects;
+  }
+  
+  getGulfProjects(): string[] {
+    var gulfProjects:string[];
+    gulfProjects=[SubCompaniesNames.PROJECTS,SubCompaniesNames.FIRST_CLASS,SubCompaniesNames.FOOD_AND_BEVERAGE,SubCompaniesNames.SECURITY]
+    return gulfProjects;
   }
 
-  getProjects(): string {
-    return SubCompaniesNames.PROJECTS;
-  }
-
-  getFoodAndBeverage(): string {
-    return SubCompaniesNames.FOOD_AND_BEVERAGE;
-  }
-
-  getRealEstate(): string {
-    return SubCompaniesNames.REAL_ESTATE;
-  }
+  
 
 }
