@@ -7,7 +7,8 @@ import { MainHomeComponent } from './features/main-home/main-home.component';
 import { FirstClassComponent } from './features/sub-companies/first-class/first-class.component';
 import { FoodBeverageComponent } from './features/sub-companies/food-beverage/food-beverage.component';
 import { LightingComponent } from './features/sub-companies/lighting/lighting.component';
-import { ProjectsComponent } from './features/sub-companies/projects/projects.component';
+import { ProjectsEgComponent } from './features/sub-companies/projects-eg/projects-eg.component';
+import { ProjectsGulfComponent } from './features/sub-companies/projects-gulf/projects-gulf.component';
 import { RealEstateComponent } from './features/sub-companies/real-estate/real-estate.component';
 import { SecurityComponent } from './features/sub-companies/security/security.component';
 
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path:'Lighting', component:LightingComponent},
   { path:'Food&Beverage', component:FoodBeverageComponent},
   { path:'RealEstate', component:RealEstateComponent},
-  { path:'Projects', component:ProjectsComponent},
+  { path:'ProjectsEg', component:ProjectsEgComponent},
+  { path:'ProjectsGulf', component:ProjectsGulfComponent},
   { path:'FirstClass', component:FirstClassComponent},
   { path:'Security', component:SecurityComponent}
 

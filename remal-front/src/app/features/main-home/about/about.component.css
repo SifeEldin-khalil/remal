@@ -1,0 +1,14 @@
+.offers-title {
+    clip-path: polygon(0 0, 1600px 0, 1600px 50%, 0 80%);
+}
+
+.offers-title {
+    background: url("../../../../assets/img/solutions/cover-solution.jpg") no-repeat;
+    background-size: cover;
+    color: #fff;
+    /* margin: 50px 0; */
+    overflow: hidden;
+    padding: 80px 20px;
+    position: relative;
+    text-align: center;
+}
