@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-projects',
-  templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  selector: 'app-first-class',
+  templateUrl: './first-class.component.html',
+  styleUrls: ['./first-class.component.css']
 })
-export class ProjectsComponent implements OnInit {
+export class FirstClassComponent implements OnInit {
   coverImages:string[];
   public contactForm: FormGroup;
   constructor(private formBuilder: FormBuilder) {
@@ -25,4 +25,5 @@ export class ProjectsComponent implements OnInit {
       msg: [, [Validators.required]],
     });
   }
+
 }
