@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
 import {NgxGalleryImage} from '@kolkov/ngx-gallery';
 import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
@@ -9,9 +9,10 @@ import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
 })
 export class GalleryComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
-  galleryImages: NgxGalleryImage[];
-
-  constructor() { }
+  @Input() images: string[];
+  galleryImages:NgxGalleryImage[]=[];
+  constructor() { 
+  }
 
   ngOnInit() {
     this.galleryOptions = [
@@ -39,41 +40,16 @@ export class GalleryComponent implements OnInit {
       }
     ];
 
-    this.galleryImages = [
-      {
-        small: 'assets/img/food&beverage/1.png',
-        medium: 'assets/img/food&beverage/1.png',
-        big: 'assets/img/food&beverage/1.png'
-      },
-      {
-        small: 'assets/img/food&beverage/2.png',
-        medium: 'assets/img/food&beverage/2.png',
-        big: 'assets/img/food&beverage/2.png'
-      },
-      {
-        small: 'assets/img/food&beverage/3.png',
-        medium: 'assets/img/food&beverage/3.png',
-        big: 'assets/img/food&beverage/3.png'
-      },{
-        small: 'assets/img/food&beverage/4.png',
-        medium: 'assets/img/food&beverage/4.png',
-        big: 'assets/img/food&beverage/4.png'
-      },
-      {
-        small: 'assets/img/food&beverage/5.png',
-        medium: 'assets/img/food&beverage/5.png',
-        big: 'assets/img/food&beverage/5.png'
-      },
-      {
-        small: 'assets/img/food&beverage/3.png',
-        medium: 'assets/img/food&beverage/3.png',
-        big: 'assets/img/food&beverage/3.png'
-       },
-       {
-          small: 'assets/img/food&beverage/1.png',
-          medium: 'assets/img/food&beverage/1.png',
-          big: 'assets/img/food&beverage/1.png'
+    for(var i of this.images){
+      this.galleryImages.push(
+        {
+          small:i,
+          medium:i,
+          big:i
         }
-    ];
+      );
+    }
+   
   }
+
 }
