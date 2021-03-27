@@ -11,14 +11,17 @@ export class LightingComponent implements OnInit {
   galleryImages:string[];
   public contactForm: FormGroup;
   constructor(private formBuilder: FormBuilder) {
-    this.coverImages=['assets/img/others/4.jpg','assets/img/others/5.jpg','assets/img/others/6.jpg']
-    this.galleryImages= ['assets/img/food&beverage/1.png',
-    'assets/img/food&beverage/2.png',
-    'assets/img/food&beverage/3.png',
-    'assets/img/food&beverage/4.png',
-    'assets/img/food&beverage/5.png',
-    'assets/img/food&beverage/3.png',
-    'assets/img/food&beverage/1.png',
+    this.galleryImages= ['assets/img/lighting/1.png',
+    'assets/img/lighting/2.png',
+    'assets/img/lighting/3.png',
+    'assets/img/lighting/4.png',
+    'assets/img/lighting/5.png',
+    'assets/img/lighting/6.png',
+    'assets/img/lighting/7.png',
+    'assets/img/lighting/8.png',
+    'assets/img/lighting/9.png',
+    'assets/img/lighting/10.png',
+    'assets/img/lighting/11.png',
   ];
   }
 

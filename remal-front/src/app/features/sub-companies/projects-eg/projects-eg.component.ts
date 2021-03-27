@@ -12,13 +12,15 @@ export class ProjectsEgComponent implements OnInit {
   public contactForm: FormGroup;
   constructor(private formBuilder: FormBuilder) {
     this.coverImages=['assets/img/others/4.jpg','assets/img/others/5.jpg','assets/img/others/6.jpg']
-    this.galleryImages= ['assets/img/food&beverage/1.png',
-    'assets/img/food&beverage/2.png',
-    'assets/img/food&beverage/3.png',
-    'assets/img/food&beverage/4.png',
-    'assets/img/food&beverage/5.png',
-    'assets/img/food&beverage/3.png',
-    'assets/img/food&beverage/1.png',
+    this.galleryImages= [
+    'assets/img/projects-eg/4.jpeg',
+    'assets/img/projects-eg/5.jpeg',
+    'assets/img/projects-eg/9.jpeg',
+    'assets/img/projects-eg/10.jpeg',
+    'assets/img/projects-eg/1.png',
+    'assets/img/projects-eg/3.jpeg',
+    'assets/img/projects-eg/6.png',
+    'assets/img/projects-eg/8.jpeg',
   ];
   }
 
