@@ -17,18 +17,23 @@
     </div>
 </section>
 <!-- ===================End About us section===============================-->
-<section id="galleryId" class="section dark-grey-text text-center">
+<section id="galleryId" class="section dark-grey-text text-center pb-2 bg-dark">
     <div class="container mt-5 mb-5">
         <div class="row mt-5">
-            <div class="col-md-12">
+            <div class="col-md-12 mt-4 text-light">
                 <h1>
-                    Our Gallery
+                    Our Products
                 </h1>
                 <hr>
             </div>
-            <div class="col-md-12 mt-5">
-                <app-gallery [images]="galleryImages"></app-gallery>
+        </div>
+        <div class="row">
+            <div class="col-md-2 mt-4" *ngFor="let product of productList">
+                <div class="bg-white box-item" placement="middle" ngbTooltip={{product.title}}>
+                    <img src={{product.pathImage}} class="box-img mx-auto d-block" alt="contact-img">
+                </div>
             </div>
+
         </div>
     </div>
 </section>
@@ -61,14 +66,10 @@
             OUR PARTENERS
         </h1>
         <hr>
-        <div class="row text-center partener-section">
-            <img class="logos" src="assets/img/partners/avolux.png">
-            <img class="logos" src="assets/img/partners/bridgelux.jpg">
-            <img class="logos" src="assets/img/partners/cree.jpg">
-            <img class="logos" src="assets/img/partners/philips.jpg">
-            <img class="logos" src="assets/img/partners/onelight_b.png">
-            <img class="logos" src="assets/img/partners/meanwell.jpg">
-            <img class="logos" src="assets/img/partners/schreder.png">
+        <div class="row text-center">
+            <div class="col-md-2" *ngFor="let partener of partenerList">
+                <img class="logos" src={{partener.pathImage}}>
+            </div>
         </div>
     </div>
 </section>
@@ -80,15 +81,10 @@
             OUR CLIENTS
         </h1>
         <hr>
-        <div class="row partener-section">
-            <img class="logos" src="assets/img/clients/57357_2.png">
-            <img class="logos" src="assets/img/clients/egybank_w.jpg">
-            <img class="logos" src="assets/img/clients/egygab.jpg">
-            <img class="logos" src="assets/img/clients/jaz4.jpg">
-            <img class="logos" src="assets/img/clients/aramex3.png">
-            <img class="logos" src="assets/img/clients/travco.jpg">
-            <img class="logos" src="assets/img/clients/mcv2.jpg">
-            <img class="logos" src="assets/img/clients/opera.png">
+        <div class="row">
+            <div class="col-md-2 box-item" *ngFor="let client of clientList">
+                <img class="logos box-img" src={{client.pathImage}}>
+            </div>
         </div>
     </div>
 </section>

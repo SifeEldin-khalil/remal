@@ -26,7 +26,10 @@
         </h1>
         <hr>
         <div class="row ">
-            <div class="col-md-6 mt-5">
+            <div class="col-md-6 mt-5" *ngFor="let availableJob of availablesJobs">
+                <app-career-card [availableJob]="availableJob"></app-career-card>
+            </div>
+            <!-- <div class="col-md-6 mt-5">
                 <app-career-card></app-career-card>
             </div>
             <div class="col-md-6 mt-5">
@@ -37,10 +40,7 @@
             </div>
             <div class="col-md-6 mt-5">
                 <app-career-card></app-career-card>
-            </div>
-            <div class="col-md-6 mt-5">
-                <app-career-card></app-career-card>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>

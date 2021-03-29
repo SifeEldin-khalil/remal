@@ -1,4 +1,5 @@
 <!--=================About section=============== -->
+
 <section id="contact" class="section dark-grey-text text-center mb-5">
 
     <div class="container pt-5 mt-5">
@@ -89,46 +90,11 @@
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-md-4">
-                <img class="mt-4 mb-4" style="max-width: 20%" src="assets/img/solutions/address-system.png">
-                <h5>Public Address Systems</h5>
+            <div class="col-md-4" *ngFor="let solution of solutionList">
+                <img class="solution-item mt-4 mb-4" style="max-width: 20%" src={{solution.pathImage}}>
+                <h5>{{solution.title}}</h5>
             </div>
-            <div class="col-md-4">
-                <img class="mt-4 mb-4" style="max-width: 20%" src="assets/img/solutions/cctv.png">
-                <h5>CCTV Systems</h5>
-            </div>
-            <div class="col-md-4">
-                <img class="mt-4 mb-4" style="max-width: 20%" src="assets/img/solutions/battery.png">
-                <h5>Central Battery</h5>
-            </div>
-            <div class="col-md-4">
-                <img class="mt-4 mb-4" style="max-width: 20%" src="assets/img/solutions/control-system.png">
-                <h5>Access Control Systems</h5>
-            </div>
-            <div class="col-md-4">
-                <img class="mt-4 mb-4" style="max-width: 20%" src="assets/img/solutions/fire-alarm.png">
-                <h5>Fire Alarm & Fire Fighting</h5>
-            </div>
-            <div class="col-md-4">
-                <img class="mt-4 mb-4" style="max-width: 20%" src="assets/img/solutions/lighting-system.png">
-                <h5>Lighting Systems</h5>
-            </div>
-            <div class="col-md-4">
-                <img class="mt-4 mb-4" style="max-width: 20%" src="assets/img/solutions/mep.png">
-                <h5>MEP</h5>
-            </div>
-            <div class="col-md-4">
-                <img class="mt-4 mb-4" style="max-width: 20%" src="assets/img/solutions/parking-system.png">
-                <h5>Car Parking Systems</h5>
-            </div>
-            <div class="col-md-4">
-                <img class="mt-4 mb-4" style="max-width: 20%" src="assets/img/solutions/psim.png">
-                <h5>Physical Security Information Management Systems</h5>
-            </div>
-            <div class="col-md-4">
-                <img class="mt-4 mb-4" style="max-width: 20%" src="assets/img/solutions/security-system.png">
-                <h5>Physical Security Systems</h5>
-            </div>
+
         </div>
     </div>
 

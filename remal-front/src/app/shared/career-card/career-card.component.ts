@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Career } from 'src/app/features/models/career.model';
 
 @Component({
   selector: 'app-career-card',
@@ -6,14 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./career-card.component.css']
 })
 export class CareerCardComponent implements OnInit {
-
+  @Input() availableJob:Career;
   constructor() { }
 
   ngOnInit(): void {
   }
 
   onClickCard(){
-    alert('Are you sure you want to apply for this job')
+    alert('Are you sure you want to apply for this job');
+    window.location.href = this.availableJob.link;
   }
 
 }

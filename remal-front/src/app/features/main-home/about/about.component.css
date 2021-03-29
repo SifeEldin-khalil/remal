@@ -12,3 +12,13 @@
     position: relative;
     text-align: center;
 }
+
+.solution-item {
+    transition: transform .5s;
+}
+
+.solution-item:hover {
+    -ms-transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+    transform: scale(1.3);
+}
