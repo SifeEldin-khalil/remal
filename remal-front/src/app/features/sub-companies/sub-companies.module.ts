@@ -8,6 +8,7 @@ import { ProjectsGulfComponent } from './projects-gulf/projects-gulf.component'
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FirstClassComponent } from './first-class/first-class.component';
 import { SecurityComponent } from './security/security.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -23,7 +24,8 @@ import { SecurityComponent } from './security/security.component';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ]
 })
 export class SubCompaniesModule { }

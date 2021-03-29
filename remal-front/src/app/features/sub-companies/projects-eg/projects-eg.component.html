@@ -10,8 +10,7 @@
             </div>
             <div class="col-md-12 mt-5">
                 <h5 style="text-align: center;">
-                    we are remal projects an egyptian company since 2015, espicialized in lighting and low current systems.
-                    We supply all types of lightning indoor and outdoor, and for low current we supply and install CCTV, data and Telephone and fire alarm system                
+                    we are remal projects an egyptian company since 2015, espicialized in lighting and low current systems. We supply all types of lightning indoor and outdoor, and for low current we supply and install CCTV, data and Telephone and fire alarm system
                 </h5>
             </div>
         </div>
@@ -28,48 +27,25 @@
                 </h1>
                 <hr>
             </div>
-            <div class="row col-md-12 mt-5">
-                <div class="col-md-6 mt-5">
-                    <h4 class="mb-3 text-left">El-Fardous Axis</h4>
-                    <p class="text-left">
-                        It is our pleasure to design street lighting system for fardous axis and supply our steet lightting luminaire RE - ST - 100W to lighten this huge project.
-                        <br>It is our pleasue too to deal with Egyptian central device for construction, concord for engieering and elsalam intenational to do our best to make traffic easier as the egypption president needs"                    
+            <div class="row col-md-12 mt-5" *ngFor="let project of projectList; let i=index">
+                <div class="col-md-6 mt-5" *ngIf="i%2==0">
+                    <h4 class="mb-3 text-left">{{project.title}}</h4>
+                    <p class="text-left" *ngFor="let desc of project.description">
+                        {{desc}}
                     </p>
                 </div>
-                <div class="col-md-6 mt-5">
-                    <img src="assets/img/projects-eg/1.png" class="proj-img">
+                <div class="col-md-6 mt-5" *ngIf="i%2==0">
+                    <img src={{project.pathImage}} class="proj-img">
                 </div>
-            </div>
-            <div class="row col-md-12 mt-5">
-                <div class="col-md-6 mt-5">
-                    <img src="assets/img/projects-eg/3.jpeg" class="proj-img">
+
+
+                <div class="col-md-6 mt-5" *ngIf="i%2==1">
+                    <img src={{project.pathImage}} class="proj-img">
                 </div>
-                <div class="col-md-6 mt-5">
-                    <h4 class="mb-3 text-left">Moutain View Projects</h4>
-                    <p class="text-left">
-                        it is our pleasure to deal with DMA for mountain view projects like ( Icity, Hyde Park and Chillout Park) to supply them with land scape luminaire like spikes, bollards, uplight, step light and bulk heads 
-                    </p>
-                </div>
-            </div>
-            <div class="row col-md-12 mt-5">
-                <div class="col-md-6 mt-5">
-                    <h4 class="mb-3 text-left">Grand Plaza</h4>
-                    <p class="text-left">
-                        it's our work in such mega project to ssupplyy them with lightting fixturees and low current system like CCTV, fire alarm, data and TELE systems"
-                    </p>
-                </div>
-                <div class="col-md-6 mt-5">
-                    <img src="assets/img/projects-eg/6.png" class="proj-img">
-                </div>
-            </div>
-            <div class="row col-md-12 mt-5">
-                <div class="col-md-6 mt-5">
-                    <img src="assets/img/projects-eg/8.jpeg" class="proj-img">
-                </div>
-                <div class="col-md-6 mt-5">
-                    <h4 class="mb-3 text-left">JAZ AQUAMARINE</h4>
-                    <p class="text-left">
-                        it is our pleasure to deal with one of our best partner Travco to design and supply lighting system
+                <div class="col-md-6 mt-5" *ngIf="i%2==1">
+                    <h4 class="mb-3 text-left">{{project.title}}</h4>
+                    <p class="text-left" *ngFor="let desc of project.description">
+                        {{desc}}
                     </p>
                 </div>
             </div>
@@ -121,12 +97,10 @@
             OUR PARTENERS
         </h1>
         <hr>
-        <div class="row text-center partener-section">
-            <img class="logos" src="assets/img/partners/bridgelux.jpg">
-            <img class="logos" src="assets/img/partners/philips.jpg">
-            <img class="logos" src="assets/img/partners/onelight_b.png">
-            <img class="logos" src="assets/img/partners/meanwell.jpg">
-            <img class="logos" src="assets/img/partners/schreder.png">
+        <div class="row text-center">
+            <div class="col-md-2 box-item" *ngFor="let partener of partenerList">
+                <img class="logos box-img" src={{partener.pathImage}}>
+            </div>
         </div>
     </div>
 </section>
@@ -138,13 +112,10 @@
             OUR CLIENTS
         </h1>
         <hr>
-        <div class="row partener-section">
-            <img class="logos" src="assets/img/clients/57357_2.png">
-            <img class="logos" src="assets/img/clients/egybank_w.jpg">
-            <img class="logos" src="assets/img/clients/egygab.jpg">
-            <img class="logos" src="assets/img/clients/jaz4.jpg">
-            <img class="logos" src="assets/img/clients/travco.jpg">
-            <img class="logos" src="assets/img/clients/opera.png">
+        <div class="row">
+            <div class="col-md-2 box-item" *ngFor="let client of clientList">
+                <img class="logos box-img" src={{client.pathImage}}>
+            </div>
         </div>
     </div>
 </section>
