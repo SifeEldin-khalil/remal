@@ -1,7 +1,6 @@
 export enum SubCompaniesNavs{
     LIGHTING = "Lighting",
-    PROJECTS_EG = "ProjectsEg",
-    PROJECTS_GULF = "ProjectsGulf",
+    PROJECTS = "Projects",
     FOOD_AND_BEVERAGE = "Food&Beverage",
     REAL_ESTATE = "RealEstate",
     SECURITY = "Security",

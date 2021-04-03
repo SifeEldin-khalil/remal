@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminComponent } from './core/admin/admin.component';
+import { DashboardComponent } from './core/dashboard/dashboard.component';
+import { SubCompanyComponent } from './core/dashboard/sub-company/sub-company.component';
 import { AboutComponent } from './features/main-home/about/about.component';
 import { CareerComponent } from './features/main-home/career/career.component';
 import { ContactComponent } from './features/main-home/contact/contact.component';
@@ -19,13 +22,17 @@ const routes: Routes = [
   { path:'Contact',component:ContactComponent},
   { path:'About',component:AboutComponent},
   { path:'Careers', component:CareerComponent},
-  { path:'Lighting', component:LightingComponent},
-  { path:'Food&Beverage', component:FoodBeverageComponent},
-  { path:'RealEstate', component:RealEstateComponent},
-  { path:'ProjectsEg', component:ProjectsEgComponent},
-  { path:'ProjectsGulf', component:ProjectsGulfComponent},
-  { path:'FirstClass', component:FirstClassComponent},
-  { path:'Security', component:SecurityComponent}
+  { path:'Egypt/Lighting', component:LightingComponent},
+  { path:'Egypt/Food&Beverage', component:FoodBeverageComponent},
+  { path:'Egypt/RealEstate', component:RealEstateComponent},
+  { path:'Egypt/Projects', component:ProjectsEgComponent},
+  { path:'Gulf/Projects', component:ProjectsGulfComponent},
+  { path:'Gulf/FirstClass', component:FirstClassComponent},
+  { path:'Gulf/Security', component:SecurityComponent},
+  { path:'Gulf/Food&Beverage', component:FoodBeverageComponent},
+  { path:'Admin',component:AdminComponent},
+  { path:'Admin/Dashboard',component:DashboardComponent},
+  { path:'Admin/:branch/:name',component:SubCompanyComponent}
 
 
 

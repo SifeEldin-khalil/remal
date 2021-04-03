@@ -1,0 +1,21 @@
+<!-- ===================Company Cards section===================== -->
+<section id="companyCardsId" class="section dark-grey-text text-center mb-5">
+    <div class="container  mt-5 pt-5">
+        <!-- <div class="row col-md-12"> -->
+        <h1>
+            Our Companies
+        </h1>
+        <hr>
+        <div class="row center-cards">
+            <div class="col-md-6 mt-5">
+                <app-company-card [companyImage]="'assets/img/circle.jpg'" [companyNames]="getEgyptProjects()" [companyBranch]="getEgyptBranch()" [adminFlag]="true">
+                </app-company-card>
+            </div>
+            <div class="col-md-6 mt-5">
+                <app-company-card [companyImage]="'assets/img/circle.jpg'" [companyNames]="getGulfProjects()" [companyBranch]="getGulfBranch()" [adminFlag]="true">
+                </app-company-card>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===================End Company Cards section===================== -->

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Branches } from 'src/app/core/enums/branches.enum';
 import { SubCompaniesNames } from 'src/app/core/enums/sub-companies-names.enum';
+import { CompaniesService } from 'src/app/core/services/companies.service';
 
 @Component({
   selector: 'app-main-home',
@@ -9,30 +10,26 @@ import { SubCompaniesNames } from 'src/app/core/enums/sub-companies-names.enum';
 })
 export class MainHomeComponent implements OnInit {
   coverImages: string[];
-  constructor() {
+  constructor(private companiesService:CompaniesService) {
     this.coverImages = ['assets/img/others/4.jpg', 'assets/img/others/5.jpg', 'assets/img/others/6.jpg']
   }
   ngOnInit(): void {
   }
 
   getEgyptProjects(): string[] {
-    var egProjects:string[];
-    egProjects=[SubCompaniesNames.PROJECTS,SubCompaniesNames.LIGHTING,SubCompaniesNames.FOOD_AND_BEVERAGE,SubCompaniesNames.REAL_ESTATE]
-    return egProjects;
+    return this.companiesService.getEgyptProjects();
   }
 
   getGulfProjects(): string[] {
-    var gulfProjects:string[];
-    gulfProjects=[SubCompaniesNames.PROJECTS,SubCompaniesNames.FIRST_CLASS,SubCompaniesNames.FOOD_AND_BEVERAGE,SubCompaniesNames.SECURITY]
-    return gulfProjects;
+    return this.companiesService.getGulfProjects();
   }
 
   getEgyptBranch():string{
-    return Branches.EGYPT;
+    return this.companiesService.getEgyptBranch();
   }
 
   getGulfBranch():string{
-    return Branches.GULF;
+    return this.companiesService.getGulfBranch();
   }
 
 }
