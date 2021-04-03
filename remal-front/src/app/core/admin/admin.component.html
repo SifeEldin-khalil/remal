@@ -1,0 +1,39 @@
+<section id="loginId" class="section dark-grey-text mb-5">
+    <div class="container pt-5 mt-5">
+        <div class="row center-cards">
+            <div class="col-md-4">
+                <div class="card">
+                    <h5 class="card-header login-header text-white text-center ">
+                        <strong>Sign in</strong>
+                    </h5>
+
+                    <div class="card-body px-lg-5 pt-0">
+                        <form style="color: #757575" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="example-form mt-4">
+                            <div class="form-group">
+                                <mat-form-field appearance="legacy" class="example-full-width">
+                                    <mat-label>Email <a style="color: red">*</a></mat-label>
+                                    <input matInput formControlName="email" />
+                                </mat-form-field>
+                                <div class="text-danger" *ngIf="loginForm.controls.email.errors?.email">
+                                    Email is invalid.
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <mat-form-field appearance="legacy" class="example-full-width">
+                                    <mat-label>Password<a style="color: red">*</a> </mat-label>
+                                    <input matInput type="password" formControlName="password" />
+                                </mat-form-field>
+                            </div>
+                            <a [routerLink]="" style="color: #399dd7; padding-bottom: 10px" (click)="onForget()">Forgot Password?</a>
+                            <button class="btn btn-outline-info btn-block my-4" type="submit">
+                    Sign in
+                    </button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

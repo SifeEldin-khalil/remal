@@ -13,28 +13,55 @@ export class CompanyCardComponent implements OnInit {
   @Input() companyNames:string[];
   @Input() companyImage:string;
   @Input() companyBranch:string;
+  @Input() adminFlag:boolean;
   constructor(private router:Router,private route:ActivatedRoute) { }
   
   ngOnInit(): void {
   }
   onClickCard(companyName:string){
-    if(companyName==SubCompaniesNames.LIGHTING){
-      this.router.navigate([SubCompaniesNavs.LIGHTING])
-    }
+   if(this.adminFlag){
+    this.routingInEditMode(companyName);
+   }else{
+    this.routingInViewMode(companyName);
+
+   }
+  }
+
+
+  routingInViewMode(companyName:string){
+    var companyNav:string;
+    if(companyName==SubCompaniesNames.LIGHTING)
+      companyNav = SubCompaniesNavs.LIGHTING;
     if(companyName==SubCompaniesNames.PROJECTS){
-      if(this.companyBranch==Branches.EGYPT)
-        this.router.navigate([SubCompaniesNavs.PROJECTS_EG])
-      else if(this.companyBranch==Branches.GULF)  
-        this.router.navigate([SubCompaniesNavs.PROJECTS_GULF])
+      companyNav=SubCompaniesNavs.PROJECTS;
     }if(companyName==SubCompaniesNames.FOOD_AND_BEVERAGE){
-      this.router.navigate([SubCompaniesNavs.FOOD_AND_BEVERAGE])
+      companyNav=SubCompaniesNavs.FOOD_AND_BEVERAGE;
     }if(companyName==SubCompaniesNames.REAL_ESTATE){
-      this.router.navigate([SubCompaniesNavs.REAL_ESTATE])
+      companyNav=SubCompaniesNavs.REAL_ESTATE;
     }if(companyName==SubCompaniesNames.SECURITY){
-      this.router.navigate([SubCompaniesNavs.SECURITY])
+      companyNav=SubCompaniesNavs.SECURITY;
     }if(companyName==SubCompaniesNames.FIRST_CLASS){
-      this.router.navigate([SubCompaniesNavs.FIRST_CLASS])
+      companyNav=SubCompaniesNavs.FIRST_CLASS;
     }
+    this.router.navigate([`${this.companyBranch}/${companyNav}`]);
+  }
+
+  routingInEditMode(companyName:string){
+    var companyNav:string;
+    if(companyName==SubCompaniesNames.LIGHTING)
+      companyNav = SubCompaniesNavs.LIGHTING;
+    if(companyName==SubCompaniesNames.PROJECTS){
+      companyNav=SubCompaniesNavs.PROJECTS;
+    }if(companyName==SubCompaniesNames.FOOD_AND_BEVERAGE){
+      companyNav=SubCompaniesNavs.FOOD_AND_BEVERAGE;
+    }if(companyName==SubCompaniesNames.REAL_ESTATE){
+      companyNav=SubCompaniesNavs.REAL_ESTATE;
+    }if(companyName==SubCompaniesNames.SECURITY){
+      companyNav=SubCompaniesNavs.SECURITY;
+    }if(companyName==SubCompaniesNames.FIRST_CLASS){
+      companyNav=SubCompaniesNavs.FIRST_CLASS;
+    }
+    this.router.navigate([`../${this.companyBranch}/${companyNav}`],{relativeTo:this.route});
   }
 
 }
