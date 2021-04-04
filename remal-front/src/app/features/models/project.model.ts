@@ -1,5 +1,5 @@
 export interface Project{
     title:string;
-    description:string[];
+    description:string;
     pathImage:string;
 }

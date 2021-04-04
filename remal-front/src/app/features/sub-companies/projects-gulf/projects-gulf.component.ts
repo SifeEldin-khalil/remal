@@ -45,10 +45,8 @@ export class ProjectsGulfComponent implements OnInit {
 
   this.projectList=[
     {title:"",
-    description:["OUR MISSION is to provide a friendly comfortable atmosphere where the customers can receive quality food, drinks and service at a reasonable price.",
-    "OUR MISSION is to provide a friendly comfortable atmosphere where the customers can receive quality food.",
-    "OUR MISSION is to provide a friendly comfortable atmosphere where the customers can receive quality food, drinks and service at a reasonable price. OUR MISSION is to provide a friendly comfortable atmosphere where the customers can receive quality food, drinks and service at a reasonable price."
-    ],pathImage:"assets/img/others/aboutus.png"},
+    description:"OUR MISSION is to provide a friendly comfortable atmosphere where the customers can receive quality food, drinks and service at a reasonable price."
+    ,pathImage:"assets/img/others/aboutus.png"},
   ];
   }
 

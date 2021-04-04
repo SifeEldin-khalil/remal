@@ -1,9 +1,66 @@
-<section id="companyId" class="section dark-grey-text text-center mb-5">
-    <div class="container  mt-5 pt-5">
-        <!-- <div class="row col-md-12"> -->
-        <h1>
-            {{companyName}}
-        </h1>
-        <hr>
-    </div>
-</section>
+<form (change)="onChange()" [formGroup]="companyForm" class="container">
+
+    <section id="companyId" class="section dark-grey-text text-center mb-5">
+        <div class="container  mt-5 pt-5">
+            <!-- <div class="row col-md-12"> -->
+            <h1>
+                {{companyName}}
+            </h1>
+            <hr>
+        </div>
+        <div class="col-md-12 mt-5 form-group" formGroupName="aboutGroup">
+            <mat-form-field class="example-full-width" appearance="outline">
+                <textarea rows="5" matInput formControlName="about"></textarea>
+            </mat-form-field>
+        </div>
+    </section>
+    <section id="proujectsId" class="section dark-grey-text text-center">
+        <div class="container mb-5">
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h1>
+                        Our Projects
+                    </h1>
+                    <hr>
+                </div>
+                <div formGroupName="projectsGroup">
+                    <div formArrayName="projects">
+                        <div class="row col-md-12 mt-5" *ngFor="let p of projects.controls; let i=index">
+                            <div class="col-md-6 mt-5" *ngIf="i%2==0" [formGroupName]="i">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>title</mat-label>
+                                    <input matInput formControlName="title">
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>description</mat-label>
+                                    <textarea rows="5" matInput formControlName="desc"></textarea>
+
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-6 mt-5" *ngIf="i%2==0">
+                                <img src="assets/img/others/aboutus.png" class="proj-img">
+                            </div>
+
+
+                            <div class="col-md-6 mt-5" *ngIf="i%2==1">
+                                <img src="assets/img/others/aboutus.png" class="proj-img">
+                            </div>
+                            <div class="col-md-6 mt-5" *ngIf="i%2==1" [formGroupName]="i">
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>title</mat-label>
+                                    <input matInput formControlName="title">
+                                </mat-form-field>
+                                <mat-form-field class="example-full-width" appearance="outline">
+                                    <mat-label>description</mat-label>
+                                    <textarea rows="5" matInput formControlName="desc"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</form>
