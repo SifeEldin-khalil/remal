@@ -28,21 +28,18 @@ export class ProjectsEgComponent implements OnInit {
   this.partenerList=[
     {pathImage:"assets/img/partners/avolux.png"},
     {pathImage:"assets/img/partners/bridgelux.jpg"},
-    {pathImage:"assets/img/partners/cree.jpg"},
-    {pathImage:"assets/img/partners/philips.jpg"},
     {pathImage:"assets/img/partners/onelight_b.png"},
-    {pathImage:"assets/img/partners/meanwell.jpg"},
-    {pathImage:"assets/img/partners/schreder.png"}
+    {pathImage:"assets/img/partners/cree.jpg"},
+    {pathImage:"assets/img/partners/schreder.png"},
+    {pathImage:"assets/img/partners/philips.jpg"},
   ];
 
   this.clientList=[
-    {pathImage:"assets/img/clients/57357_2.png"},
     {pathImage:"assets/img/clients/egybank_w.jpg"},
     {pathImage:"assets/img/clients/egygab.jpg"},
     {pathImage:"assets/img/clients/jaz4.jpg"},
     {pathImage:"assets/img/clients/aramex3.png"},
     {pathImage:"assets/img/clients/travco.jpg"},
-    {pathImage:"assets/img/clients/mcv2.jpg"},
     {pathImage:"assets/img/clients/opera.png"}
 
   ];
