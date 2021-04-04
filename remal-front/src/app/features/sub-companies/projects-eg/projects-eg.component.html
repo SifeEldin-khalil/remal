@@ -30,8 +30,8 @@
             <div class="row col-md-12 mt-5" *ngFor="let project of projectList; let i=index">
                 <div class="col-md-6 mt-5" *ngIf="i%2==0">
                     <h4 class="mb-3 text-left">{{project.title}}</h4>
-                    <p class="text-left" *ngFor="let desc of project.description">
-                        {{desc}}
+                    <p class="text-left">
+                        {{project.description}}
                     </p>
                 </div>
                 <div class="col-md-6 mt-5" *ngIf="i%2==0">
@@ -44,8 +44,8 @@
                 </div>
                 <div class="col-md-6 mt-5" *ngIf="i%2==1">
                     <h4 class="mb-3 text-left">{{project.title}}</h4>
-                    <p class="text-left" *ngFor="let desc of project.description">
-                        {{desc}}
+                    <p class="text-left">
+                        {{project.description}}
                     </p>
                 </div>
             </div>
