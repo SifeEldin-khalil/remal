@@ -46,18 +46,17 @@ export class ProjectsEgComponent implements OnInit {
 
   this.projectList=[
     {title:"El-Fardous Axis",
-    description:["It is our pleasure to design street lighting system for fardous axis and supply our steet lightting luminaire RE - ST - 100W to lighten this huge project.",
-    "It is our pleasue too to deal with Egyptian central device for construction, concord for engieering and elsalam intenational to do our best to make traffic easier as the egypption president needs"
-    ],pathImage:"assets/img/projects-eg/1.png"},
+    description:"It is our pleasure to design street lighting system for fardous axis and supply our steet lightting luminaire RE - ST - 100W to lighten this huge project."
+    ,pathImage:"assets/img/projects-eg/1.png"},
     {title:"Moutain View Projects",
-    description:["it is our pleasure to deal with DMA for mountain view projects like ( Icity, Hyde Park and Chillout Park) to supply them with land scape luminaire like spikes, bollards, uplight, step light and bulk heads"
-    ],pathImage:"assets/img/projects-eg/3.jpeg"},
+    description:"it is our pleasure to deal with DMA for mountain view projects like ( Icity, Hyde Park and Chillout Park) to supply them with land scape luminaire like spikes, bollards, uplight, step light and bulk heads"
+    ,pathImage:"assets/img/projects-eg/3.jpeg"},
     {title:"Grand Plaza",
-    description:["it's our work in such mega project to ssupplyy them with lightting fixturees and low current system like CCTV, fire alarm, data and TELE systems"
-    ],pathImage:"assets/img/projects-eg/6.png"},
+    description:"it's our work in such mega project to ssupplyy them with lightting fixturees and low current system like CCTV, fire alarm, data and TELE systems"
+    ,pathImage:"assets/img/projects-eg/6.png"},
     {title:"JAZ AQUAMARINE",
-    description:["it is our pleasure to deal with one of our best partner Travco to design and supply lighting system"
-    ],pathImage:"assets/img/projects-eg/8.jpeg"}
+    description:"it is our pleasure to deal with one of our best partner Travco to design and supply lighting system"
+    ,pathImage:"assets/img/projects-eg/8.jpeg"}
   ];
 
   }

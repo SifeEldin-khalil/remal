@@ -23,18 +23,17 @@ export class SecurityComponent implements OnInit {
   
   this.projectList=[
     {title:"Central Market",
-    description:["Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description."
-    ],pathImage:"assets/img/security/project/central-market.jpg"},
+    description:"Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description."
+    ,pathImage:"assets/img/security/project/central-market.jpg"},
     {title:"Hamad International Airport",
-    description:["Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description"
-    ],pathImage:"assets/img/security/project/hamad-inter-airport.jpg"},
+    description:"Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description"
+    ,pathImage:"assets/img/security/project/hamad-inter-airport.jpg"},
     {title:"Msheireb Properties",
-    description:["Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description"
-    ],pathImage:"assets/img/security/project/msheireb-properties.jpg"},
+    description:"Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description"
+    ,pathImage:"assets/img/security/project/msheireb-properties.jpg"},
     {title:"Porto Arabia",
-    description:["Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description",
-    "Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description"
-    ],pathImage:"assets/img/security/project/porto-arabia.jpg"}
+    description:"Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description Project Description Project DescriptionProject DescriptionProject DescriptionProject DescriptionProject DescriptionProject Description"
+    ,pathImage:"assets/img/security/project/porto-arabia.jpg"}
   ];
   }
 
