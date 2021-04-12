@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './core/admin/admin.component';
 import { DashboardComponent } from './core/dashboard/dashboard.component';
 import { SubCompanyComponent } from './core/dashboard/sub-company/sub-company.component';
+import { AuthGuardService } from './core/services/auth-guard.service';
 import { AboutComponent } from './features/main-home/about/about.component';
 import { CareerComponent } from './features/main-home/career/career.component';
 import { ContactComponent } from './features/main-home/contact/contact.component';
@@ -31,8 +32,8 @@ const routes: Routes = [
   { path:'Gulf/Security', component:SecurityComponent},
   { path:'Gulf/Food&Beverage', component:FoodBeverageComponent},
   { path:'Admin',component:AdminComponent},
-  { path:'Admin/Dashboard',component:DashboardComponent},
-  { path:'Admin/:branch/:name',component:SubCompanyComponent}
+  { path:'Admin/Dashboard',component:DashboardComponent,canActivate:[ AuthGuardService]},
+  { path:'Admin/:branch/:name',component:SubCompanyComponent,canActivate:[ AuthGuardService]}
 
 
 

@@ -34,21 +34,21 @@
                 <div class="col-md-6 mt-5" *ngIf="i%2==0">
                     <h4 class="mb-3 text-left">{{project.title}}</h4>
                     <p class="text-left">
-                        {{project.description}}
+                        {{project.desc}}
                     </p>
                 </div>
                 <div class="col-md-6 mt-5" *ngIf="i%2==0">
-                    <img src={{project.pathImage}} class="proj-img">
+                    <img [src]=getImagePath(project.path) class="proj-img">
                 </div>
 
 
                 <div class="col-md-6 mt-5" *ngIf="i%2==1">
-                    <img src={{project.pathImage}} class="proj-img">
+                    <img [src]=getImagePath(project.path) class="proj-img">
                 </div>
                 <div class="col-md-6 mt-5" *ngIf="i%2==1">
                     <h4 class="mb-3 text-left">{{project.title}}</h4>
                     <p class="text-left">
-                        {{project.description}}
+                        {{project.desc}}
                     </p>
                 </div>
             </div>
@@ -63,7 +63,7 @@
         <div class="row mt-5">
             <div class="col-md-12">
                 <h1>
-                    Our Gallery
+                    Gallery
                 </h1>
                 <hr>
             </div>
@@ -86,7 +86,8 @@
             <div class="col-md-6 mt-5">
                 <app-contact-form [contactForm]="contactForm"> </app-contact-form>
                 <div class="text-center">
-                    <button class="main_btn">Send Message</button>
+                    <mat-spinner *ngIf="isLoading"></mat-spinner>
+                    <button class="main_btn" (click)="sendContact()" [disabled]="isSubmitted">Send Message</button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompaniesService } from '../services/companies.service';
+import { CompanyService } from 'src/app/features/sub-companies/services/company.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,25 +8,25 @@ import { CompaniesService } from '../services/companies.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private companiesService:CompaniesService) { }
+  constructor(private companyService:CompanyService) { }
 
   ngOnInit(): void {
   }
 
   getEgyptProjects(): string[] {
-    return this.companiesService.getEgyptProjects();
+    return this.companyService.getEgyptProjects();
   }
 
   getGulfProjects(): string[] {
-    return this.companiesService.getGulfProjects();
+    return this.companyService.getGulfProjects();
   }
 
   getEgyptBranch():string{
-    return this.companiesService.getEgyptBranch();
+    return this.companyService.getEgyptBranch();
   }
 
   getGulfBranch():string{
-    return this.companiesService.getGulfBranch();
+    return this.companyService.getGulfBranch();
   }
 
 }

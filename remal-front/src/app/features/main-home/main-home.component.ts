@@ -1,7 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Branches } from 'src/app/core/enums/branches.enum';
-import { SubCompaniesNames } from 'src/app/core/enums/sub-companies-names.enum';
-import { CompaniesService } from 'src/app/core/services/companies.service';
+import { Component, OnInit } from '@angular/core';
+import { CompanyService } from '../sub-companies/services/company.service';
 
 @Component({
   selector: 'app-main-home',
@@ -10,26 +8,28 @@ import { CompaniesService } from 'src/app/core/services/companies.service';
 })
 export class MainHomeComponent implements OnInit {
   coverImages: string[];
-  constructor(private companiesService:CompaniesService) {
+  constructor(private companyService:CompanyService) {
     this.coverImages = ['assets/img/others/4.jpg', 'assets/img/others/5.jpg', 'assets/img/others/6.jpg']
   }
   ngOnInit(): void {
   }
 
   getEgyptProjects(): string[] {
-    return this.companiesService.getEgyptProjects();
+    return this.companyService.getEgyptProjects();
   }
 
   getGulfProjects(): string[] {
-    return this.companiesService.getGulfProjects();
+    return this.companyService.getGulfProjects();
   }
 
   getEgyptBranch():string{
-    return this.companiesService.getEgyptBranch();
+    return this.companyService.getEgyptBranch();
   }
 
   getGulfBranch():string{
-    return this.companiesService.getGulfBranch();
+    return this.companyService.getGulfBranch();
   }
+
+ 
 
 }

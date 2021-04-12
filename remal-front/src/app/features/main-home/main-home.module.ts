@@ -6,6 +6,8 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { CareerComponent } from './career/career.component';
 import { AppearDirective } from './appear';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -18,7 +20,11 @@ import { AppearDirective } from './appear';
   ],
   imports: [
     CommonModule,
-    SharedModule
+    SharedModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule
+
+
    ]
 })
 export class MainHomeModule { }

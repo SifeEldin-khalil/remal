@@ -9,6 +9,15 @@ import { AdminComponent } from './admin/admin.component';
 //loginForm
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+// import { HTTP_INTERCEPTORS } from '@angular/common/http';
+// import { HttpFailureInterceptor } from './interceptors/http-failure.interceptor';
+
+// Firebase services + enviorment module
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+
 
 @NgModule({
   declarations: [MainLayoutComponent, HeaderComponent, FooterComponent, AdminComponent],
@@ -16,8 +25,21 @@ import { ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
     ],
+
+  providers:[
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: HttpFailureInterceptor,
+    //   multi: true
+    // },
+
+  ] , 
+  
   exports:[
     MainLayoutComponent
   ]

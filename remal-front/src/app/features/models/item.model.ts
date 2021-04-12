@@ -1,5 +1,5 @@
 export interface Item {
-    title?:string;
-    pathImage:string;
+    title:string;
+    path:string;
   }
   
