@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Branches } from 'src/app/core/enums/branches.enum';
+import { SubCompaniesNames } from 'src/app/core/enums/sub-companies-names.enum';
+import { environment } from 'src/environments/environment';
+import { Contact } from '../../models/contact.model';
+import { CompanyService } from '../services/company.service';
 
 @Component({
   selector: 'app-first-class',
@@ -7,21 +12,25 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./first-class.component.css']
 })
 export class FirstClassComponent implements OnInit {
-  coverImages:string[];
   galleryImages:string[];
   public contactForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
-    this.coverImages=['assets/img/others/4.jpg','assets/img/others/5.jpg','assets/img/others/6.jpg']
-    this.galleryImages= [
-      'assets/img/others/aboutus.png',
-      'assets/img/others/aboutus.png',
-      'assets/img/others/aboutus.png',
-      'assets/img/others/aboutus.png',
-    ];
+  isLoading:boolean;
+  isSubmitted:boolean;
+  constructor(private formBuilder: FormBuilder,
+    private companyService:CompanyService) {
+      this.isLoading=false;
+      this.isSubmitted=false;
+    // this.galleryImages= [
+    //   'assets/img/others/aboutus.png',
+    //   'assets/img/others/aboutus.png',
+    //   'assets/img/others/aboutus.png',
+    //   'assets/img/others/aboutus.png',
+    // ];
   }
 
   ngOnInit(): void {
     this.initForm();
+    this.getCompanyByNameAndBranch(SubCompaniesNames.FIRST_CLASS,Branches.GULF);
   }
   
   private initForm() {
@@ -32,5 +41,52 @@ export class FirstClassComponent implements OnInit {
       msg: [, [Validators.required]],
     });
   }
+
+  getCompanyByNameAndBranch(name:string,branch:string){
+    this.companyService.getCompanyByNameAndBranch(name,branch).subscribe(res=>{
+      console.log(res['company']);
+      if(res['company']!=undefined){
+        this.galleryImages=res['company']['gallery'];
+      }
+    }, err=>{
+      console.log("*******error*****");
+    })
+  }
+
+
+  getImagePath(relativePath:string){
+    return environment.apiUrlImage+relativePath;
+  }
+
+  sendContact(){
+    if(!this.contactForm.valid){
+      this.setFormError();
+    }else{
+      var formData:Contact=this.contactForm.getRawValue();
+      this.isLoading=true;
+      this.companyService.addContact(formData,SubCompaniesNames.FIRST_CLASS,Branches.GULF).subscribe(res=>{
+        console.log(res);
+        this.isLoading=false;
+        this.isSubmitted=true;
+        this.resetForm();
+      }, err=>{
+        console.log("*******error*****");
+      })
+    }
+  }
+
+
+  setFormError(){
+    for (var name in this.contactForm.controls){
+      if (this.contactForm.controls[name].status == "INVALID") {
+        this.contactForm.controls[name].markAsTouched();
+      }
+   }
+  }
+
+  resetForm(){
+    this.contactForm.reset();
+  }
+
 
 }

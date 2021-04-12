@@ -10,6 +10,8 @@ import { FirstClassComponent } from './first-class/first-class.component';
 import { SecurityComponent } from './security/security.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     CommonModule,
     SharedModule,
-    NgbModule
+    MatProgressSpinnerModule,
+    NgbModule,
+    BrowserAnimationsModule
   ]
 })
 export class SubCompaniesModule { }

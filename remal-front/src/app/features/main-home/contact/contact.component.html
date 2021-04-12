@@ -17,7 +17,8 @@
                     <div class="col-md-12 mb-md-0 mb-5">
                         <app-contact-form [contactForm]="contactForm"> </app-contact-form>
                         <div class="text-center">
-                            <button class="main_btn">Send Message</button>
+                            <mat-spinner *ngIf="isLoading"></mat-spinner>
+                            <button class="main_btn" (click)="sendContact()" [disabled]="isSubmitted">Send Message</button>
                         </div>
                     </div>
                 </div>

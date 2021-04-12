@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Branches } from 'src/app/core/enums/branches.enum';
+import { SubCompaniesNames } from 'src/app/core/enums/sub-companies-names.enum';
+import { Contact } from '../../models/contact.model';
+import { Item } from '../../models/item.model';
+import { CompanyService } from '../services/company.service';
 
 @Component({
   selector: 'app-food-beverage',
@@ -7,24 +12,27 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./food-beverage.component.css']
 })
 export class FoodBeverageComponent implements OnInit {
-  coverImages:string[];
   public contactForm: FormGroup;
-  galleryImages:string[];
-  constructor(private formBuilder: FormBuilder) {
-    this.coverImages=['assets/img/others/4.jpg','assets/img/others/5.jpg','assets/img/others/6.jpg']
-    this.galleryImages= ['assets/img/food&beverage/1.png',
-    'assets/img/food&beverage/2.png',
-    'assets/img/food&beverage/3.png',
-    'assets/img/food&beverage/4.png',
-    'assets/img/food&beverage/5.png',
-    'assets/img/food&beverage/3.png',
-    'assets/img/food&beverage/1.png',
-  ];
+  galleryImages:Item[];
+  isLoading:boolean;
+  isSubmitted:boolean;
+  constructor(private formBuilder: FormBuilder,
+    private companyService:CompanyService) {
+      this.isLoading=false;
+      this.isSubmitted=false;
+  //   this.galleryImages= ['assets/img/food&beverage/1.png',
+  //   'assets/img/food&beverage/2.png',
+  //   'assets/img/food&beverage/3.png',
+  //   'assets/img/food&beverage/4.png',
+  //   'assets/img/food&beverage/5.png',
+  //   'assets/img/food&beverage/3.png',
+  //   'assets/img/food&beverage/1.png',
+  // ];
   }
 
   ngOnInit(): void {
     this.initForm();
-    
+    this.getCompanyByNameAndBranch(SubCompaniesNames.FOOD_AND_BEVERAGE,Branches.EGYPT);
   }
   
   private initForm() {
@@ -35,5 +43,47 @@ export class FoodBeverageComponent implements OnInit {
       msg: [, [Validators.required]],
     });
   }
+
+  getCompanyByNameAndBranch(name:string,branch:string){
+    this.companyService.getCompanyByNameAndBranch(name,branch).subscribe(res=>{
+      console.log(res['company']);
+      if(res['company']!=undefined){
+        this.galleryImages=res['company']['gallery'];
+      }
+    }, err=>{
+      console.log("*******error*****");
+    })
+  }
+
+  sendContact(){
+    if(!this.contactForm.valid){
+      this.setFormError();
+    }else{
+      var formData:Contact=this.contactForm.getRawValue();
+      this.isLoading=true;
+      this.companyService.addContact(formData,SubCompaniesNames.FOOD_AND_BEVERAGE,Branches.EGYPT).subscribe(res=>{
+        console.log(res);
+        this.isLoading=false;
+        this.isSubmitted=true;
+        this.resetForm();
+      }, err=>{
+        console.log("*******error*****");
+      })
+    }
+  }
+
+
+  setFormError(){
+    for (var name in this.contactForm.controls){
+      if (this.contactForm.controls[name].status == "INVALID") {
+        this.contactForm.controls[name].markAsTouched();
+      }
+   }
+  }
+
+  resetForm(){
+    this.contactForm.reset();
+  }
+
 
 }

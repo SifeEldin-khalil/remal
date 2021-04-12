@@ -26,7 +26,7 @@
         <div class="row mt-5">
             <div class="col-md-12">
                 <h1>
-                    Our Gallery
+                    Gallery
                 </h1>
                 <hr>
             </div>
@@ -49,7 +49,8 @@
             <div class="col-md-6 mt-5">
                 <app-contact-form [contactForm]="contactForm"> </app-contact-form>
                 <div class="text-center">
-                    <button class="main_btn">Send Message</button>
+                    <mat-spinner *ngIf="isLoading"></mat-spinner>
+                    <button class="main_btn" (click)="sendContact()" [disabled]="isSubmitted">Send Message</button>
                 </div>
             </div>
         </div>
