@@ -19,6 +19,11 @@ export class CompanyService {
     egProjects=[SubCompaniesNames.PROJECTS,SubCompaniesNames.LIGHTING,SubCompaniesNames.FOOD_AND_BEVERAGE,SubCompaniesNames.REAL_ESTATE]
     return egProjects;
   }
+  getSubEgyptProjects(): string[] {
+    var egProjects:string[];
+    egProjects=[SubCompaniesNames.PROJECTS,SubCompaniesNames.LIGHTING,SubCompaniesNames.FOOD_AND_BEVERAGE]
+    return egProjects;
+  }
 
   getGulfProjects(): string[] {
     var gulfProjects:string[];

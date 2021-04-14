@@ -14,7 +14,7 @@ import { CompanyService } from '../services/company.service';
   styleUrls: ['./projects-gulf.component.css']
 })
 export class ProjectsGulfComponent implements OnInit {
-  partenerList:Item[];
+  partnerList:Item[];
   clientList:Item[];
   galleryImages:string[];
   projectList:Project[];
@@ -32,7 +32,7 @@ export class ProjectsGulfComponent implements OnInit {
   //   'assets/img/others/aboutus.png',
   // ];
 
-  // this.partenerList=[
+  // this.partnerList=[
   //   {path:"assets/img/partners/avolux.png"},
   //   {path:"assets/img/partners/bridgelux.jpg"},
   //   {path:"assets/img/partners/cree.jpg"},
@@ -76,7 +76,7 @@ export class ProjectsGulfComponent implements OnInit {
       console.log(res['company']);
       if(res['company']!=undefined){
         this.projectList=res['company']['project'];
-        this.partenerList=res['company']['partner'];
+        this.partnerList=res['company']['partner'];
         this.clientList=res['company']['client'];
         this.galleryImages=res['company']['gallery'];
       }
