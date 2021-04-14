@@ -129,13 +129,9 @@ hr {
     width: 200px;
 }
 
-.partener-section {
+.partner-section {
     padding: 2vw;
     justify-content: space-evenly;
-}
-
-.logos {
-    max-width: 9vw;
 }
 
 .about-head-img {
@@ -188,11 +184,6 @@ hr {
     color: #000;
     text-align: center;
     line-height: 300px;
-}
-
-.proj-img {
-    height: 100%;
-    width: 100%;
 }
 
 .box-item {

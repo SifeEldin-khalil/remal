@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Branches } from 'src/app/core/enums/branches.enum';
 import { SubCompaniesNames } from 'src/app/core/enums/sub-companies-names.enum';
+import { environment } from 'src/environments/environment';
 import { Contact } from '../../models/contact.model';
 import { Item } from '../../models/item.model';
 import { CompanyService } from '../services/company.service';
@@ -14,14 +15,17 @@ import { CompanyService } from '../services/company.service';
 export class LightingComponent implements OnInit {
   public contactForm: FormGroup;
   public productList:Item[];
-  public partenerList:Item[];
+  public partnerList:Item[];
   public clientList:Item[];
+  public productsCategoryMap:Map<string, Item[]>
+
   isLoading:boolean;
   isSubmitted:boolean;
   constructor(private formBuilder: FormBuilder,
     private companyService:CompanyService) {
       this.isLoading=false;
       this.isSubmitted=false;
+      this.productsCategoryMap=new Map<string, Item[]>();
     // this.productList=[
     //   {title:"XXXX VVVVVV",path:"assets/img/lighting/1.png"},
     //   {title:"XXXX VVVVVV",path:"assets/img/lighting/2.png"},
@@ -33,7 +37,7 @@ export class LightingComponent implements OnInit {
     //   {title:"XXXX VVVVVV",path:"assets/img/lighting/8.png"},
     // ];
 
-    // this.partenerList=[
+    // this.partnerList=[
     //   {path:"assets/img/partners/avolux.png"},
     //   {path:"assets/img/partners/bridgelux.jpg"},
     //   {path:"assets/img/partners/cree.jpg"},
@@ -73,8 +77,25 @@ export class LightingComponent implements OnInit {
       console.log(res['company']);
       if(res['company']!=undefined){
         this.productList=res['company']['product'];
-        this.partenerList=res['company']['partner'];
+        this.partnerList=res['company']['partner'];
         this.clientList=res['company']['client'];
+        console.log(this.productList);
+        if(this.productList.length>0){
+          var tmpList:Item[]=[];
+          var cat:string=this.productList[0].category;
+          for(var item of this.productList){
+            if(item.category.replace(/\s/g, '') ==cat.replace(/\s/g, '') ){
+              tmpList.push(item);
+            }else{
+              this.productsCategoryMap.set(cat,tmpList);
+              tmpList=[];
+              tmpList.push(item);
+              cat=item.category;
+            }
+  
+          }
+        }
+        this.productsCategoryMap.set(cat,tmpList);        
       }
     }, err=>{
       console.log("*******error*****");
@@ -109,6 +130,10 @@ export class LightingComponent implements OnInit {
 
   resetForm(){
     this.contactForm.reset();
+  }
+
+  getImagePath(relativePath:string){
+    return environment.apiUrlImage+relativePath;
   }
 
 }

@@ -26,7 +26,7 @@
         <div class="row mt-5">
             <div class="col-md-12">
                 <h1>
-                    our Projects
+                    OUR PROJECTS
                 </h1>
                 <hr>
             </div>
@@ -38,12 +38,12 @@
                     </p>
                 </div>
                 <div class="col-md-6 mt-5" *ngIf="i%2==0">
-                    <img [src]=getImagePath(project.path) class="proj-img">
+                    <img [src]=getImagePath(project.path) class="box-img">
                 </div>
 
 
                 <div class="col-md-6 mt-5" *ngIf="i%2==1">
-                    <img [src]=getImagePath(project.path) class="proj-img">
+                    <img [src]=getImagePath(project.path) class="box-img">
                 </div>
                 <div class="col-md-6 mt-5" *ngIf="i%2==1">
                     <h4 class="mb-3 text-left">{{project.title}}</h4>
@@ -61,7 +61,7 @@
         <div class="row mt-5">
             <div class="col-md-12">
                 <h1>
-                    Gallery
+                    GALLERY
                 </h1>
                 <hr>
             </div>
@@ -98,12 +98,12 @@
 <section id="partnersId" class="mt-5 section dark-grey-text text-center">
     <div class="container-fluid mt-5 mb-5">
         <h1>
-            OUR PARTENERS
+            OUR PARTNERS
         </h1>
         <hr>
         <div class="row text-center">
-            <div class="col-md-2 box-item mt-5" *ngFor="let partener of partenerList">
-                <img class="logos box-img" [src]=getImagePath(partener.path)>
+            <div class="col-md-2 box-item mt-5" *ngFor="let partner of partnerList">
+                <img class="  box-img" [src]=getImagePath(partner.path)>
             </div>
         </div>
     </div>
@@ -118,7 +118,7 @@
         <hr>
         <div class="row">
             <div class="col-md-2 box-item" *ngFor="let client of clientList">
-                <img class="logos box-img" [src]=getImagePath(client.path)>
+                <img class="  box-img" [src]=getImagePath(client.path)>
             </div>
         </div>
     </div>

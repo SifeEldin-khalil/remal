@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getEgyptProjects(): string[] {
-    return this.companyService.getEgyptProjects();
+    return this.companyService.getSubEgyptProjects();
   }
 
   getGulfProjects(): string[] {

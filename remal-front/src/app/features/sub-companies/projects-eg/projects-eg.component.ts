@@ -15,7 +15,7 @@ import { CompanyService } from '../services/company.service';
 })
 export class ProjectsEgComponent implements OnInit {
   galleryImages:Item[];
-  partenerList:Item[];
+  partnerList:Item[];
   clientList:Item[];
   projectList:Project[];
   isLoading:boolean;
@@ -35,7 +35,7 @@ export class ProjectsEgComponent implements OnInit {
   //   'assets/img/projects-eg/6.png',
   //   'assets/img/projects-eg/8.jpeg',
   // ];
-  // this.partenerList=[
+  // this.partnerList=[
   //   {path:"assets/img/partners/avolux.png"},
   //   {path:"assets/img/partners/bridgelux.jpg"},
   //   {path:"assets/img/partners/onelight_b.png"},
@@ -91,7 +91,7 @@ export class ProjectsEgComponent implements OnInit {
       console.log("res",res['company']);
       if(res['company']!=undefined){
         this.projectList=res['company']['project'];
-        this.partenerList=res['company']['partner'];
+        this.partnerList=res['company']['partner'];
         this.clientList=res['company']['client'];
         this.galleryImages=res['company']['gallery'];
       }

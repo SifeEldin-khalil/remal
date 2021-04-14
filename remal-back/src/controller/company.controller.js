@@ -1,3 +1,14 @@
+const SubCompaniesNameEnum = {
+    LIGHTING: "Lighting",
+    PROJECTS: "Projects",
+    FOOD_AND_BEVERAGE: "Food & Beverage",
+    REAL_ESTATE: "Real Estate",
+    SECURITY: "Security",
+    FIRST_CLASS: "First Class",
+    INTERNATIONAL: "International"
+};
+Object.freeze(SubCompaniesNameEnum);
+
 const testApi = (req, res) => {
     res.send("Hello, Your app is running fully functional");
 };
@@ -9,6 +20,7 @@ const getCompany = (req, res) => {
         res.status(502).send("Error getting company");
         return;
     }
+
     db.collection("company").where('name', '==', name.toLowerCase()).where('branch', '==', branch.toLowerCase())
         .get()
         .then((documents) => {
@@ -19,8 +31,14 @@ const getCompany = (req, res) => {
                     code: '003'
                 });
             } else {
+                result = doc.data();
+                if (name == SubCompaniesNameEnum.LIGHTING) {
+                    let productList = result.product;
+                    productList.sort((a, b) => a.category.localeCompare(b.category))
+                    result.product = productList;
+                }
                 res.status(200).json({
-                    company: doc.data(),
+                    company: result,
                     code: '001',
                     message: 'successful message'
                 });
@@ -34,6 +52,7 @@ const getCompany = (req, res) => {
                 message: 'failed message'
             });
         });
+
 };
 
 
@@ -67,7 +86,7 @@ const getAllCareers = (req, res) => {
 
 //Contac Us=====================================================================
 
-addContact = (req, res) => {
+const addContact = (req, res) => {
     let obj = req.body;
     db.collection(`Contact`)
         .add(obj)
