@@ -32,6 +32,7 @@ const getCompany = (req, res) => {
                 });
             } else {
                 result = doc.data();
+                result.id = doc.id;
                 if (name == SubCompaniesNameEnum.LIGHTING) {
                     let productList = result.product;
                     productList.sort((a, b) => a.category.localeCompare(b.category))
@@ -55,6 +56,28 @@ const getCompany = (req, res) => {
 
 };
 
+
+const updateCompany = (req, res) => {
+    let companyObject = req.body;
+    db.collection("company")
+        .doc(companyObject.id).update(companyObject)
+        .then((snapshot) => {
+            res.status(200).json({
+                companyId: snapshot.id,
+                code: '001',
+                message: 'successful message'
+            });
+        })
+        .catch((err) => {
+            console.log("Error getting company", err);
+            res.status(502).json({
+                code: '002',
+                error: err,
+                message: 'failed message'
+            });
+        });
+
+};
 
 
 const getAllCareers = (req, res) => {
@@ -108,6 +131,7 @@ const addContact = (req, res) => {
 module.exports = {
     testApi,
     getCompany,
+    updateCompany,
     getAllCareers,
     addContact
 };

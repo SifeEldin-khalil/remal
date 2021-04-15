@@ -22,27 +22,6 @@ export class SecurityComponent implements OnInit {
     private companyService:CompanyService) {
       this.isLoading=false;
       this.isSubmitted=false;
-  //   this.galleryImages= [
-  //   'assets/img/security/project/porto-arabia.jpg',
-  //   'assets/img/security/project/msheireb-properties.jpg',
-  //   'assets/img/security/project/hamad-inter-airport.jpg',
-  //   'assets/img/security/project/central-market.jpg',
-  // ];
-  
-  // this.projectList=[
-  //   {title:"Central Market",
-  //   desc:"Project desc Project descProject descProject descProject descProject descProject desc Project desc Project descProject descProject descProject descProject descProject desc."
-  //   ,path:"assets/img/security/project/central-market.jpg"},
-  //   {title:"Hamad International Airport",
-  //   desc:"Project desc Project descProject descProject descProject descProject descProject desc Project desc Project descProject descProject descProject descProject descProject desc"
-  //   ,path:"assets/img/security/project/hamad-inter-airport.jpg"},
-  //   {title:"Msheireb Properties",
-  //   desc:"Project desc Project descProject descProject descProject descProject descProject desc Project desc Project descProject descProject descProject descProject descProject desc"
-  //   ,path:"assets/img/security/project/msheireb-properties.jpg"},
-  //   {title:"Porto Arabia",
-  //   desc:"Project desc Project descProject descProject descProject descProject descProject desc Project desc Project descProject descProject descProject descProject descProject desc"
-  //   ,path:"assets/img/security/project/porto-arabia.jpg"}
-  // ];
   }
 
   ngOnInit(): void {

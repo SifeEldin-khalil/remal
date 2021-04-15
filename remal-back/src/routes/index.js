@@ -6,7 +6,7 @@ const companyController = require("../controller/company.controller");
 // const cookieParser = require('cookie-parser');
 // const cors = require('cors');
 
-// var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');
 
 let routes = (app) => {
     // router.post("/Api/Upload", fileController.upload);
@@ -16,9 +16,11 @@ let routes = (app) => {
     router.get("/Api/Company", companyController.getCompany);
     router.get("/Api/Careers", companyController.getAllCareers);
     router.post("/Api/AddContact", companyController.addContact);
+    router.post("/Api/UpdateCompany", companyController.updateCompany);
+    // use to get req.body 
+    app.use(bodyParser.json({ limit: '50mb', extended: true }));
+    app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
     // app.use(bodyParser.json());
-    // app.use(bodyParser.json({ limit: '50mb', extended: true }));
-    // app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
     // app.use(cookieParser());
     // app.use(cors());
     app.use(router);

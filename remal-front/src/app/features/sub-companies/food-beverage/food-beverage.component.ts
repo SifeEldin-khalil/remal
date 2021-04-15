@@ -20,14 +20,7 @@ export class FoodBeverageComponent implements OnInit {
     private companyService:CompanyService) {
       this.isLoading=false;
       this.isSubmitted=false;
-  //   this.galleryImages= ['assets/img/food&beverage/1.png',
-  //   'assets/img/food&beverage/2.png',
-  //   'assets/img/food&beverage/3.png',
-  //   'assets/img/food&beverage/4.png',
-  //   'assets/img/food&beverage/5.png',
-  //   'assets/img/food&beverage/3.png',
-  //   'assets/img/food&beverage/1.png',
-  // ];
+
   }
 
   ngOnInit(): void {
