@@ -26,35 +26,6 @@ export class LightingComponent implements OnInit {
       this.isLoading=false;
       this.isSubmitted=false;
       this.productsCategoryMap=new Map<string, Item[]>();
-    // this.productList=[
-    //   {title:"XXXX VVVVVV",path:"assets/img/lighting/1.png"},
-    //   {title:"XXXX VVVVVV",path:"assets/img/lighting/2.png"},
-    //   {title:"XXXX VVVVVV",path:"assets/img/lighting/3.png"},
-    //   {title:"XXXX VVVVVV",path:"assets/img/lighting/4.png"},
-    //   {title:"XXXX VVVVVV",path:"assets/img/lighting/5.png"},
-    //   {title:"XXXX VVVVVV",path:"assets/img/lighting/6.png"},
-    //   {title:"XXXX VVVVVV",path:"assets/img/lighting/7.png"},
-    //   {title:"XXXX VVVVVV",path:"assets/img/lighting/8.png"},
-    // ];
-
-    // this.partnerList=[
-    //   {path:"assets/img/partners/avolux.png"},
-    //   {path:"assets/img/partners/bridgelux.jpg"},
-    //   {path:"assets/img/partners/cree.jpg"},
-    //   {path:"assets/img/partners/philips.jpg"},
-    //   {path:"assets/img/partners/onelight_b.png"},
-    //   {path:"assets/img/partners/schreder.png"}
-    // ];
-
-    // this.clientList=[
-    //   {path:"assets/img/clients/egybank_w.jpg"},
-    //   {path:"assets/img/clients/egygab.jpg"},
-    //   {path:"assets/img/clients/jaz4.jpg"},
-    //   {path:"assets/img/clients/aramex3.png"},
-    //   {path:"assets/img/clients/travco.jpg"},
-    //   {path:"assets/img/clients/opera.png"}
-
-    // ];
   }
 
   ngOnInit(): void {

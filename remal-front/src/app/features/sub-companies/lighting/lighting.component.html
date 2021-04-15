@@ -89,9 +89,9 @@
             OUR PARTNERS
         </h1>
         <hr>
-        <div class="row text-center">
-            <div class="col-md-2 mt-5" *ngFor="let partner of partnerList">
-                <img class=" " [src]=getImagePath(partner.path)>
+        <div class="row">
+            <div class="col-md-2 box-item mt-5" *ngFor="let partner of partnerList">
+                <img class="box-img" [src]=getImagePath(partner.path)>
             </div>
         </div>
     </div>
@@ -106,7 +106,7 @@
         <hr>
         <div class="row">
             <div class="col-md-2 box-item" *ngFor="let client of clientList">
-                <img class="  box-img" [src]=getImagePath(client.path)>
+                <img class="box-img" [src]=getImagePath(client.path)>
             </div>
         </div>
     </div>

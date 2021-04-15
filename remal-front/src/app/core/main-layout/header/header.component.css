@@ -1,12 +1,19 @@
-.nav-items{
+.nav-items {
     font-size: larger;
-    
 }
+
 .nav-items:hover {
     color: #105c80 !important;
 }
+
 .active {
     color: #0b3d53 !important;
     text-decoration: underline;
     text-underline-offset: 0.5vw;
+}
+
+.dropdown-label {
+    padding: 0.25rem 1.5rem;
+    background-color: #f1f6f9;
+    width: 100%;
 }

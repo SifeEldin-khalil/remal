@@ -20,12 +20,6 @@ export class FirstClassComponent implements OnInit {
     private companyService:CompanyService) {
       this.isLoading=false;
       this.isSubmitted=false;
-    // this.galleryImages= [
-    //   'assets/img/others/aboutus.png',
-    //   'assets/img/others/aboutus.png',
-    //   'assets/img/others/aboutus.png',
-    //   'assets/img/others/aboutus.png',
-    // ];
   }
 
   ngOnInit(): void {

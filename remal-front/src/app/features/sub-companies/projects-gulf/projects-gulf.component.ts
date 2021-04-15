@@ -25,36 +25,6 @@ export class ProjectsGulfComponent implements OnInit {
     private companyService:CompanyService) {
       this.isLoading=false;
       this.isSubmitted=false;
-  //   this.galleryImages= [
-  //   'assets/img/others/aboutus.png',
-  //   'assets/img/others/aboutus.png',
-  //   'assets/img/others/aboutus.png',
-  //   'assets/img/others/aboutus.png',
-  // ];
-
-  // this.partnerList=[
-  //   {path:"assets/img/partners/avolux.png"},
-  //   {path:"assets/img/partners/bridgelux.jpg"},
-  //   {path:"assets/img/partners/cree.jpg"},
-  //   {path:"assets/img/partners/philips.jpg"},
-  //   {path:"assets/img/partners/onelight_b.png"},
-  //   {path:"assets/img/partners/schreder.png"}
-  // ];
-
-  // this.clientList=[
-  //   {path:"assets/img/clients/egybank_w.jpg"},
-  //   {path:"assets/img/clients/egygab.jpg"},
-  //   {path:"assets/img/clients/jaz4.jpg"},
-  //   {path:"assets/img/clients/aramex3.png"},
-  //   {path:"assets/img/clients/travco.jpg"},
-  //   {path:"assets/img/clients/opera.png"}
-  // ];
-
-  // this.projectList=[
-  //   {title:"",
-  //   desc:"OUR MISSION is to provide a friendly comfortable atmosphere where the customers can receive quality food, drinks and service at a reasonable price."
-  //   ,path:"assets/img/others/aboutus.png"},
-  // ];
   }
 
   ngOnInit(): void {
