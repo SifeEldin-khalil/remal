@@ -43,7 +43,7 @@
                         {{item.key}}
                     </th>
                     <td>
-                        <div class="row">
+                        <div class="row mid-div">
                             <div class="col-md-1" *ngFor="let product of item.value">
                                 <div class="bg-white box-item" placement="middle" ngbTooltip={{product.title}}>
                                     <img [src]=getImagePath(product.path) class="box-img mx-auto d-block" alt="contact-img">
@@ -89,7 +89,7 @@
             OUR PARTNERS
         </h1>
         <hr>
-        <div class="row">
+        <div class="row mid-div">
             <div class="col-md-2 box-item mt-5" *ngFor="let partner of partnerList">
                 <img class="box-img" [src]=getImagePath(partner.path)>
             </div>
@@ -104,7 +104,7 @@
             OUR CLIENTS
         </h1>
         <hr>
-        <div class="row">
+        <div class="row mid-div">
             <div class="col-md-2 box-item" *ngFor="let client of clientList">
                 <img class="box-img" [src]=getImagePath(client.path)>
             </div>
