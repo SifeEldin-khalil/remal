@@ -39,12 +39,12 @@
         <table class="table table-responsive-sm mt-5" id="table">
             <tbody id="t-body">
                 <tr class="table-body" *ngFor="let item of productsCategoryMap | keyvalue">
-                    <th scope="row" width="20%">
+                    <th scope="row mt-1" width="20%">
                         {{item.key}}
                     </th>
                     <td>
                         <div class="row mid-div">
-                            <div class="col-md-1" *ngFor="let product of item.value">
+                            <div class="col-md-1 mt-1" *ngFor="let product of item.value">
                                 <div class="bg-white box-item" placement="middle" ngbTooltip={{product.title}}>
                                     <img [src]=getImagePath(product.path) class="box-img mx-auto d-block" alt="contact-img">
                                 </div>
