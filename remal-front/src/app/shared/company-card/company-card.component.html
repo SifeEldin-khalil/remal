@@ -3,22 +3,14 @@
         <div class="hovereffect">
             <img src="{{companyImage}}" class="img-fluid" />
             <div class="overlay">
-                <!-- <h2>Hover effect 1v2</h2> -->
                 <div class="mt-3 row center-cards">
-                    <div class="col-md-7 mt-3" *ngFor="let compName of companyNames">
+                    <div class="col-md-7 mt-1" *ngFor="let compName of companyNames">
                         <a (click)="onClickCard(compName)" class="pt-2 info">
-                            <h2>{{compName}}</h2>
+                            <h5>{{compName}}</h5>
                         </a>
                     </div>
-
                 </div>
-
             </div>
         </div>
-
     </div>
-    <!-- <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-       
-    </div> -->
 </div>
