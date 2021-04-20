@@ -9,7 +9,7 @@ import { CompanyService } from '../sub-companies/services/company.service';
 export class MainHomeComponent implements OnInit {
   coverImages: string[];
   constructor(private companyService:CompanyService) {
-    this.coverImages = ['assets/img/others/4.jpg', 'assets/img/others/5.jpg', 'assets/img/others/6.jpg']
+    this.coverImages = ['assets/img/others/cover1.jpeg','assets/img/others/cover2.jpeg','assets/img/others/cover3.jpeg','assets/img/others/cover4.jpeg', 'assets/img/others/cover5.jpeg', 'assets/img/others/cover6.jpeg']
   }
   ngOnInit(): void {
   }
