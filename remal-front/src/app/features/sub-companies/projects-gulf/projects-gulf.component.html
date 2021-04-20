@@ -83,9 +83,13 @@
             </div>
             <div class="col-md-6 mt-5">
                 <app-contact-form [contactForm]="contactForm"> </app-contact-form>
-                <div class="text-center">
-                    <mat-spinner *ngIf="isLoading"></mat-spinner>
-                    <button class="main_btn" (click)="sendContact()" [disabled]="isSubmitted">Send Message</button>
+                <div class="text-center row" style="justify-content: center;">
+                    <div class="col-md-12" style="display: flex; justify-content: center;">
+                        <mat-spinner diameter="50" *ngIf="isLoading"></mat-spinner>
+                    </div>
+                    <div class="col-md-12 mt-4">
+                        <button class="main_btn" (click)="sendContact()" [disabled]="isSubmitted">Send Message</button>
+                    </div>
                 </div>
             </div>
         </div>
