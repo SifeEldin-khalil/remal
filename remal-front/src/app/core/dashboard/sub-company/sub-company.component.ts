@@ -106,7 +106,8 @@ export class SubCompanyComponent implements OnInit {
     for(let item of productList){
       this.products.push(this.formBuilder.group({
         title: item.title,
-        path:item.path
+        path:item.path,
+        category:item.category
       }));
     }
   }
