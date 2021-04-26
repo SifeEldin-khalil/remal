@@ -80,20 +80,22 @@
 
                 <div formGroupName="productsGroup">
                     <div formArrayName="products">
-                        <div class="row col-md-12 mt-5" *ngFor="let p of products.controls; let i=index">
-                            <div class="col-md-6 mt-5" [formGroupName]="i">
-                                <mat-form-field class="example-full-width" appearance="outline">
-                                    <mat-label>title</mat-label>
-                                    <input matInput formControlName="title">
-                                </mat-form-field>
-                                <mat-form-field class="example-full-width" appearance="outline">
-                                    <mat-label>category</mat-label>
-                                    <input matInput formControlName="category">
-                                </mat-form-field>
-                                <input style="display: block;" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.PRODUCT)">
-                            </div>
-                            <div class="col-md-6 mt-5 box-item">
-                                <img [src]="getImagePath(p.controls.path.value)" class="box-img">
+                        <div class="row col-md-12 mt-5">
+                            <div class="col-md-3 mt-5" *ngFor="let p of products.controls; let i=index">
+                                <div [formGroupName]="i">
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>title</mat-label>
+                                        <input matInput formControlName="title">
+                                    </mat-form-field>
+                                    <mat-form-field class="example-full-width" appearance="outline">
+                                        <mat-label>category</mat-label>
+                                        <input matInput formControlName="category">
+                                    </mat-form-field>
+                                    <input style="display: block;" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.PRODUCT)">
+                                </div>
+                                <div class="col-md-6 mt-5 box-item">
+                                    <img [src]="getImagePath(p.controls.path.value)" class="box-img">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -113,14 +115,14 @@
                 </div>
                 <div formGroupName="galleryGroup">
                     <div formArrayName="gallery">
-                        <div class="row col-md-12 mt-5" *ngFor="let p of gallery.controls; let i=index">
-                            <div class="col-md-4 box-item" [formGroupName]="i">
+                        <div class="row col-md-12 mt-5">
+                            <div class="col-md-4 mb-5 box-item" style="height: 100%;" *ngFor="let p of gallery.controls; let i=index" [formGroupName]="i">
                                 <mat-form-field class="example-full-width" appearance="outline">
                                     <mat-label>title</mat-label>
                                     <input matInput formControlName="title">
                                 </mat-form-field>
                                 <input style="display: block;" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.GALLERY)">
-                                <img [src]="getImagePath(p.controls.path.value)" class="mt-2 box-img">
+                                <img style="height: 150px;" [src]="getImagePath(p.controls.path.value)" class="mt-2 box-img">
                             </div>
                         </div>
                     </div>

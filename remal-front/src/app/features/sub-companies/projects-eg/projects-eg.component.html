@@ -35,12 +35,12 @@
                     </p>
                 </div>
                 <div class="col-md-6 mt-5" *ngIf="i%2==0">
-                    <img [src]=getImagePath(project.path) class="box-img">
+                    <img [src]=getImagePath(project.path) style="height: 220px; width: 550px;" class="box-img">
                 </div>
 
 
                 <div class="col-md-6 mt-5" *ngIf="i%2==1">
-                    <img [src]=getImagePath(project.path) class="box-img">
+                    <img [src]=getImagePath(project.path) style="height: 250px; width: 600px;" class="box-img">
                 </div>
                 <div class="col-md-6 mt-5" *ngIf="i%2==1">
                     <h4 class="mb-3 text-left">{{project.title}}</h4>
