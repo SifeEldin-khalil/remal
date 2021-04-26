@@ -81,34 +81,19 @@
                 <div formGroupName="productsGroup">
                     <div formArrayName="products">
                         <div class="row col-md-12 mt-5" *ngFor="let p of products.controls; let i=index">
-                            <div class="col-md-6 mt-5" *ngIf="i%2==0" [formGroupName]="i">
+                            <div class="col-md-6 mt-5" [formGroupName]="i">
                                 <mat-form-field class="example-full-width" appearance="outline">
                                     <mat-label>title</mat-label>
                                     <input matInput formControlName="title">
                                 </mat-form-field>
                                 <mat-form-field class="example-full-width" appearance="outline">
-                                    <mat-label>desc</mat-label>
-                                    <textarea rows="5" matInput formControlName="desc"></textarea>
-
+                                    <mat-label>category</mat-label>
+                                    <input matInput formControlName="category">
                                 </mat-form-field>
+                                <input style="display: block;" type="file" id="file" (change)="handleFileInput($event.target.files,i)">
                             </div>
-                            <div class="col-md-6 mt-5 box-item" *ngIf="i%2==0">
+                            <div class="col-md-6 mt-5 box-item">
                                 <img [src]="getImagePath(p.controls.path.value)" class="box-img">
-                            </div>
-
-
-                            <div class="col-md-6 mt-5 box-item" *ngIf="i%2==1">
-                                <img [src]="getImagePath(p.controls.path.value)" class="box-img">
-                            </div>
-                            <div class="col-md-6 mt-5" *ngIf="i%2==1" [formGroupName]="i">
-                                <mat-form-field class="example-full-width" appearance="outline">
-                                    <mat-label>title</mat-label>
-                                    <input matInput formControlName="title">
-                                </mat-form-field>
-                                <mat-form-field class="example-full-width" appearance="outline">
-                                    <mat-label>desc</mat-label>
-                                    <textarea rows="5" matInput formControlName="desc"></textarea>
-                                </mat-form-field>
                             </div>
                         </div>
                     </div>
@@ -134,7 +119,8 @@
                                     <mat-label>title</mat-label>
                                     <input matInput formControlName="title">
                                 </mat-form-field>
-                                <img [src]="getImagePath(p.controls.path.value)" class="box-img">
+                                <input style="display: block;" type="file" id="file" (change)="handleFileInput($event.target.files,i)">
+                                <img [src]="getImagePath(p.controls.path.value)" class="mt-2 box-img">
                             </div>
                         </div>
                     </div>
