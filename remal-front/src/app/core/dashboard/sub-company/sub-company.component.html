@@ -139,10 +139,13 @@
             <hr>
 
             <div formGroupName="partnersGroup">
-                <div formArrayName="partners" class="row col-md-12">
-                    <div class="col-md-2 mt-5" *ngFor="let p of partners.controls; let i=index">
-                        <div class="box-item" [formGroupName]="i">
-                            <img [src]="getImagePath(p.controls.path.value)" class="  box-img">
+                <div formArrayName="partners">
+                    <div class="row col-md-12 mid-div">
+                        <div class="col-md-3 mt-5" [formGroupName]="i" *ngFor="let p of partners.controls; let i=index">
+                            <input style="display: block;" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.PARTNER)">
+                            <div class="box-item">
+                                <img [src]="getImagePath(p.controls.path.value)" class="mt-2 box-img">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -158,9 +161,10 @@
             <hr>
 
             <div formGroupName="clientsGroup">
-                <div formArrayName="clients" class="row col-md-12">
-                    <div class="col-md-2 mt-5" *ngFor="let p of clients.controls; let i=index">
-                        <div class="box-item" [formGroupName]="i">
+                <div formArrayName="clients" class="row col-md-12 mid-div">
+                    <div class="col-md-3 mt-5" [formGroupName]="i" *ngFor="let p of clients.controls; let i=index">
+                        <input style="display: block;" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.CLIENT)">
+                        <div class="box-item">
                             <img [src]="getImagePath(p.controls.path.value)" class="  box-img">
                         </div>
                     </div>
