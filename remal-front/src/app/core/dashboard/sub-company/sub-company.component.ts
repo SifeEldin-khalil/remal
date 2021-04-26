@@ -5,8 +5,13 @@ import { Item } from 'src/app/features/models/item.model';
 import { Project } from 'src/app/features/models/project.model';
 import { CompanyService } from 'src/app/features/sub-companies/services/company.service';
 import { environment } from 'src/environments/environment';
+import { Categories } from '../../enums/categories.enum';
 import { SubCompaniesNames } from '../../enums/sub-companies-names.enum';
 
+interface FileMetaData {
+ index:number;
+ category:string;
+}
 @Component({
   selector: 'app-sub-company',
   templateUrl: './sub-company.component.html',
@@ -22,7 +27,8 @@ export class SubCompanyComponent implements OnInit {
   partnersFlag:boolean;
   clientsFlag:boolean;
 
-  filesToUploadProjects:File[];
+  filesToUpload:File[];
+  filesToUploadMetaData:FileMetaData[];
 
 
   companyForm: FormGroup;
@@ -35,7 +41,8 @@ export class SubCompanyComponent implements OnInit {
       this.partnersFlag=false;
       this.clientsFlag=false;
 
-      this.filesToUploadProjects=[];
+      this.filesToUpload=[];
+      this.filesToUploadMetaData=[];
      }
 
   ngOnInit(): void {
@@ -87,12 +94,7 @@ export class SubCompanyComponent implements OnInit {
     }
   }
 
-  onChange(){
-    console.log(this.companyForm.get("projectsGroup"));
-  }
- 
-
-  addAllProjects(projectList:Project[]){
+  getAllProjects(projectList:Project[]){
     for(let item of projectList){
       this.projects.push(this.formBuilder.group({
         title: item.title,
@@ -102,7 +104,7 @@ export class SubCompanyComponent implements OnInit {
     }
   }
 
-  addAllProducts(productList:Item[]){
+  getAllProducts(productList:Item[]){
     for(let item of productList){
       this.products.push(this.formBuilder.group({
         title: item.title,
@@ -112,7 +114,7 @@ export class SubCompanyComponent implements OnInit {
     }
   }
 
-  addAllGallery(galleryList:Item[]){
+  getAllGallery(galleryList:Item[]){
     for(let item of galleryList){
       this.gallery.push(this.formBuilder.group({
         title: item.title,
@@ -121,7 +123,7 @@ export class SubCompanyComponent implements OnInit {
     }
   }
    
-  addAllPartners(partnerList:Item[]){
+  getAllPartners(partnerList:Item[]){
     for(let item of partnerList){
       this.partners.push(this.formBuilder.group({
         title: item.title,
@@ -130,7 +132,7 @@ export class SubCompanyComponent implements OnInit {
     }
   }
 
-  addAllClients(clientList:Item[]){
+  getAllClients(clientList:Item[]){
     for(let item of clientList){
       this.clients.push(this.formBuilder.group({
         title: item.title,
@@ -164,11 +166,11 @@ export class SubCompanyComponent implements OnInit {
     this.companyService.getCompanyByNameAndBranch(name,branch).subscribe(res=>{
       console.log(res['company']);
       if(res['company']!=undefined){
-        this.addAllProjects(res['company']['project']==undefined?[]:res['company']['project']);
-        this.addAllProducts(res['company']['product']==undefined?[]:res['company']['product']);
-        this.addAllGallery(res['company']['gallery']==undefined?[]:res['company']['gallery']);
-        this.addAllPartners(res['company']['partner']==undefined?[]:res['company']['partner']);
-        this.addAllClients(res['company']['client']==undefined?[]:res['company']['client']);
+        this.getAllProjects(res['company'][Categories.PROJECT]==undefined?[]:res['company'][Categories.PROJECT]);
+        this.getAllProducts(res['company'][Categories.PRODUCT]==undefined?[]:res['company'][Categories.PRODUCT]);
+        this.getAllGallery(res['company'][Categories.GALLERY]==undefined?[]:res['company'][Categories.GALLERY]);
+        this.getAllPartners(res['company'][Categories.PARTNER]==undefined?[]:res['company'][Categories.PARTNER]);
+        this.getAllClients(res['company'][Categories.CLIENT]==undefined?[]:res['company'][Categories.CLIENT]);
       }
     }, err=>{
       console.log("*******error*****");
@@ -179,11 +181,25 @@ export class SubCompanyComponent implements OnInit {
     return environment.apiUrlImage+relativePath;
   }
 
-  handleFileInput(files: FileList,i:number) {
-    // this.fileToUpload = files.item(0);
-    console.log(i);
-    this.filesToUploadProjects[i]=(files.item(0));
-    console.log(this.filesToUploadProjects);
+handleFileInput(files: FileList,i:number,category:string) {
+    let fileIndex=this.filesToUploadMetaData.findIndex(item=>item.index==i && item.category==category);
+    if(fileIndex>-1){
+      this.filesToUpload[fileIndex]=(files.item(0));
+    }else{
+      this.filesToUpload.push(files.item(0));
+      this.filesToUploadMetaData.push({category:category,index:i})
+    }
+    console.log(this.filesToUpload);
+    console.log(this.filesToUploadMetaData);
+
+}
+
+public get Categories(): typeof Categories {
+  return Categories; 
+}
+
+SaveChanges(){
+  
 }
 
 }
