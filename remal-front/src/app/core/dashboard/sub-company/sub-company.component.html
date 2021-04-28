@@ -1,4 +1,4 @@
-<form [formGroup]="companyForm" (ngSubmit)="SaveChanges()" class="container">
+<form [formGroup]="companyForm" (ngSubmit)="applyChanges()" class="container">
 
     <section id="companyId" class="section dark-grey-text text-center mb-5">
         <div class="container  mt-5 pt-5">
@@ -37,12 +37,14 @@
 
                                 </mat-form-field>
                                 <input style="display: block;" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
+                                <a type="button" (click)="onDelete()" class="btn btn-link" style="color: red; display: block;">Delete Item</a>
+
                                 <!-- <i class="fas fa-times"></i> -->
                             </div>
                             <div class="col-md-6 mt-5 box-item" *ngIf="i%2==0">
                                 <img [src]="getImagePath(p.controls.path.value)" style="height: 260px; width: 100%;" class="box-img">
                             </div>
-                            
+
                             <div class="col-md-6 mt-5 box-item" *ngIf="i%2==1">
                                 <img [src]="getImagePath(p.controls.path.value)" style="height: 260px; width: 100%;" class="box-img">
                             </div>
@@ -170,6 +172,11 @@
             </div>
         </div>
     </section>
-
+    <div class="container-fluid mb-5">
+        <div style="text-align: right;">
+            <a routerLink="" type="button" (click)="cancel()" class="btn btn-link" style="color: #399dd7;">Cancel</a>
+            <button type="submit" class="btn btn-primary" style="background-color: #399dd7;">Apply Changes</button>
+        </div>
+    </div>
 
 </form>

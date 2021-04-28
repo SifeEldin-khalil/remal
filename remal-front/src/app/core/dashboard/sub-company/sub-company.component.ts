@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/features/models/item.model';
 import { Project } from 'src/app/features/models/project.model';
 import { CompanyService } from 'src/app/features/sub-companies/services/company.service';
 import { environment } from 'src/environments/environment';
 import { Categories } from '../../enums/categories.enum';
+import { Messages } from '../../enums/messages.enum';
 import { SubCompaniesNames } from '../../enums/sub-companies-names.enum';
+import { LoadingService } from '../../services/loading.service';
+import { ToastService } from '../../services/toast.service';
 
 interface FileMetaData {
  index:number;
@@ -20,7 +23,7 @@ interface FileMetaData {
 export class SubCompanyComponent implements OnInit {
   companyName:string;
   companyBranch:string;
-
+  companyId:string;
   projectsFlag:boolean;
   productsFlag:boolean;
   galleryFlag:boolean;
@@ -29,12 +32,15 @@ export class SubCompanyComponent implements OnInit {
 
   filesToUpload:File[];
   filesToUploadMetaData:FileMetaData[];
-
+  filesToRemove:string[];
 
   companyForm: FormGroup;
   constructor(private route:ActivatedRoute,
     private formBuilder:FormBuilder,
-    private companyService:CompanyService) {
+    private companyService:CompanyService,
+    private loadingService:LoadingService,
+    private toastService:ToastService,
+    private router:Router) {
       this.projectsFlag=false;
       this.productsFlag=false;
       this.galleryFlag=false;
@@ -43,6 +49,7 @@ export class SubCompanyComponent implements OnInit {
 
       this.filesToUpload=[];
       this.filesToUploadMetaData=[];
+      this.filesToRemove=[];
      }
 
   ngOnInit(): void {
@@ -141,6 +148,47 @@ export class SubCompanyComponent implements OnInit {
     }
   }
 
+  extractAllProjects():Item[]{
+    var projectList:Item[]=[];
+    for(var item of this.projects.controls){
+      projectList.push(item.value)
+    }
+    return projectList;
+  }
+
+  extractAllProducts():Item[]{
+    var productList:Item[]=[];
+    for(var item of this.products.controls){
+      productList.push(item.value)
+    }
+    return productList;
+  }
+
+  extractAllGallery():Item[]{
+    var galleryList:Item[]=[];
+    for(var item of this.gallery.controls){
+      galleryList.push(item.value)
+    }
+    return galleryList;
+  }
+   
+  extractAllPartners():Item[]{
+    var partnerList:Item[]=[];
+    for(var item of this.partners.controls){
+      partnerList.push(item.value)
+    }
+    return partnerList;
+  }
+
+  extractAllClients():Item[]{
+    var clientList:Item[]=[];
+    for(var item of this.clients.controls){
+      clientList.push(item.value)
+    }
+    return clientList;
+  }
+
+
 
   get projects() : FormArray {
     return this.companyForm.get("projectsGroup").get("projects") as FormArray;
@@ -165,15 +213,21 @@ export class SubCompanyComponent implements OnInit {
   getCompanyByNameAndBranch(name:string,branch:string){
     this.companyService.getCompanyByNameAndBranch(name,branch).subscribe(res=>{
       console.log(res['company']);
+      this.companyId=res['company']['id'];
       if(res['company']!=undefined){
-        this.getAllProjects(res['company'][Categories.PROJECT]==undefined?[]:res['company'][Categories.PROJECT]);
-        this.getAllProducts(res['company'][Categories.PRODUCT]==undefined?[]:res['company'][Categories.PRODUCT]);
-        this.getAllGallery(res['company'][Categories.GALLERY]==undefined?[]:res['company'][Categories.GALLERY]);
-        this.getAllPartners(res['company'][Categories.PARTNER]==undefined?[]:res['company'][Categories.PARTNER]);
-        this.getAllClients(res['company'][Categories.CLIENT]==undefined?[]:res['company'][Categories.CLIENT]);
+        if(this.projectsFlag)
+          this.getAllProjects(res['company'][Categories.PROJECT]==undefined?[]:res['company'][Categories.PROJECT]);
+        if(this.productsFlag)
+          this.getAllProducts(res['company'][Categories.PRODUCT]==undefined?[]:res['company'][Categories.PRODUCT]);
+        if(this.galleryFlag)
+          this.getAllGallery(res['company'][Categories.GALLERY]==undefined?[]:res['company'][Categories.GALLERY]);
+        if(this.partnersFlag)
+          this.getAllPartners(res['company'][Categories.PARTNER]==undefined?[]:res['company'][Categories.PARTNER]);
+        if(this.clientsFlag)
+          this.getAllClients(res['company'][Categories.CLIENT]==undefined?[]:res['company'][Categories.CLIENT]);
       }
     }, err=>{
-      console.log("*******error*****");
+      console.log("*******error*****",err);
     })
   }
 
@@ -182,9 +236,16 @@ export class SubCompanyComponent implements OnInit {
   }
 
 handleFileInput(files: FileList,i:number,category:string) {
+  console.log("files",files.item(0));
     let fileIndex=this.filesToUploadMetaData.findIndex(item=>item.index==i && item.category==category);
+    console.log("file index",fileIndex);
     if(fileIndex>-1){
-      this.filesToUpload[fileIndex]=(files.item(0));
+      if(files.item(0)==null){
+        this.filesToUpload.splice(fileIndex,1);
+        this.filesToUploadMetaData.splice(fileIndex,1);
+      }else{
+        this.filesToUpload[fileIndex]=(files.item(0));
+      }
     }else{
       this.filesToUpload.push(files.item(0));
       this.filesToUploadMetaData.push({category:category,index:i})
@@ -198,8 +259,105 @@ public get Categories(): typeof Categories {
   return Categories; 
 }
 
-SaveChanges(){
+applyChanges(){
+  if(this.filesToUpload.length!=0){
+    this.saveChangesWithFiles();
+  }else{
+    this.saveChangesWithoutFiles();
+  }
+}
+
+
+saveChangesWithFiles(){
+  this.loadingService.startLoading();
+  let formData = new FormData();
+  for (var i = 0; i < this.filesToUpload.length; i++) {
+    formData.append("uploads[]", this.filesToUpload[i], this.filesToUpload[i].name);
+  }
+  this.companyService.uploadFiles(formData,`${this.companyBranch}/${this.companyName}`).subscribe((result:any)=>{
+    for(let i=0;i<this.filesToUploadMetaData.length;i++){
+      let item =this.filesToUploadMetaData[i];
+      if(item.category==Categories.PROJECT){
+        var oldValue=this.projects.controls[item.index]['controls']['path'].value;
+        this.filesToRemove.push(oldValue);
+        this.projects.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
+      }
+      if(item.category==Categories.PRODUCT){
+        var oldValue =this.products.controls[item.index]['controls']['path'].value;
+        this.filesToRemove.push(oldValue);
+        this.products.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
+      }
+      else if(item.category==Categories.GALLERY){
+        var oldValue = this.gallery.controls[item.index]['controls']['path'].value;
+        this.filesToRemove.push(oldValue);
+        this.gallery.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
+      }
+      else if(item.category==Categories.PARTNER){
+        var oldValue=this.partners.controls[item.index]['controls']['path'].value;
+        this.filesToRemove.push(oldValue);
+        this.partners.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
+      }
+      else if(item.category==Categories.CLIENT){
+        var oldValue = this.clients.controls[item.index]['controls']['path'].value;
+        this.filesToRemove.push(oldValue);
+        this.clients.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
+      }
+    }
+    this.loadingService.stopLoading();
+    this.saveChangesWithoutFiles();
+
+  },err=>{
+    this.loadingService.stopLoading();
+    if(err.code=='002'){
+      this.toastService.error(err.message);
+    }else{
+      this.toastService.error(Messages.ERROR_SERVER)
+    }
+  })
+}
+
+saveChangesWithoutFiles(){
+  this.loadingService.startLoading();
+  var company={
+    filesPaths:this.filesToRemove
+    ,company:{
+    id:this.companyId
+  }};
+  if(this.projectsFlag){
+    company.company[Categories.PROJECT]=this.extractAllProjects();
+  }
+  if(this.productsFlag){
+    company.company[Categories.PRODUCT]=this.extractAllProducts();
+  }
+  if(this.galleryFlag){
+    company.company[Categories.GALLERY]=this.extractAllGallery();
+  }
+  if(this.partnersFlag){
+    company.company[Categories.PARTNER]=this.extractAllPartners();
+  }
+  if(this.clientsFlag){
+    company.company[Categories.CLIENT]=this.extractAllClients();
+  }
+console.log("company",company);
+  this.companyService.updateCompany(company).subscribe((result)=>{
+    this.loadingService.stopLoading();
+    console.log("result",result);
+  },err=>{
+    console.log("error",err);
+    this.loadingService.stopLoading();
+    if(err.code=='002'){
+      this.toastService.error(err.message);
+    }else{
+      this.toastService.error(Messages.ERROR_SERVER)
+    }
+  })
+}
+
+onDelete(){
   
+}
+cancel(){
+  this.router.navigate(['../../Dashboard'],{relativeTo:this.route});
 }
 
 }

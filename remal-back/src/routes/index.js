@@ -9,8 +9,8 @@ const companyController = require("../controller/company.controller");
 var bodyParser = require('body-parser');
 
 let routes = (app) => {
-    // router.post("/Api/Upload", fileController.upload);
     // router.get("/files", controller.getListFiles);
+    router.post("/Api/UploadFiles", fileController.upload);
     router.get("/Api/Files", fileController.download);
     router.get("/Api", companyController.testApi);
     router.get("/Api/Company", companyController.getCompany);

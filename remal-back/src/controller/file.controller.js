@@ -5,25 +5,41 @@ const baseUrl = "http://localhost:3000/files/";
 const upload = async(req, res) => {
     try {
         await uploadFile(req, res);
+        //console.log("files written in disk", req.files);
 
-        if (req.file == undefined) {
-            return res.status(400).send({ message: "Please upload a file!" });
+        if (req.files == undefined || req.files == null || req.files.length == 0) {
+            res.status(500).send({
+                message: `Could not upload the files`,
+                code: "002"
+            });
+        } else {
+            let zeroFlag = false;
+            for (let f of req.files) {
+                if (!f.size > 0) {
+                    zeroFlag = true;
+                    res.json({ "code": "002", "message": "Could not upload the files" });
+                }
+            }
+            if (zeroFlag) {
+                res.end();
+                return;
+            }
         }
-
         res.status(200).send({
-            message: "Uploaded the file successfully: " + req.file.originalname,
+            message: "Uploaded the file successfully",
+            files: req.files
         });
     } catch (err) {
-        console.log(err);
-
+        console.log("error: ", err);
         if (err.code == "LIMIT_FILE_SIZE") {
             return res.status(500).send({
-                message: "File size cannot be larger than 2MB!",
+                code: '002',
+                message: "File size cannot be larger than 10MB!",
             });
         }
-
         res.status(500).send({
-            message: `Could not upload the file: ${req.file.originalname}. ${err}`,
+            message: `Could not upload the file`,
+            code: "002"
         });
     }
 };
@@ -35,6 +51,7 @@ const getListFiles = (req, res) => {
         if (err) {
             res.status(500).send({
                 message: "Unable to scan files!",
+                code: "002"
             });
         }
 
@@ -57,7 +74,8 @@ const download = (req, res) => {
     res.download(directoryPath + fileName, fileName, (err) => {
         if (err) {
             res.status(500).send({
-                message: "Could not download the file. " + err,
+                message: "Could not download the file. ",
+                code: "002"
             });
         }
     });

@@ -1,22 +1,21 @@
 const util = require("util");
 const multer = require("multer");
-const maxSize = 2 * 1024 * 1024;
+const maxSize = 10 * 1024 * 1024;
 
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, __basedir + "/uploads/");
+        cb(null, `./uploads/${req.headers.path}`);
     },
     filename: (req, file, cb) => {
-        console.log(file);
-        console.log(file.originalname);
-        cb(null, file.originalname);
+        console.log("each file to write", file);
+        cb(null, Date.now() + '-' + file.originalname);
     },
 });
 
 let uploadFile = multer({
     storage: storage,
     limits: { fileSize: maxSize },
-}).single("file");
+}).array("uploads[]");
 
 let uploadFileMiddleware = util.promisify(uploadFile);
 module.exports = uploadFileMiddleware;
