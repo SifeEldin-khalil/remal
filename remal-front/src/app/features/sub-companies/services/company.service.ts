@@ -1,4 +1,4 @@
-import { HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Branches } from 'src/app/core/enums/branches.enum';
@@ -69,6 +69,24 @@ export class CompanyService {
         console.log("calling endpoint: ",RestEndpoints.ADD_CONTACT,'\nbody request: ',body,'\nresponse: ',result)
         return result;
       }));
+  }
+
+
+  uploadFiles(files:FormData,path:string){
+    return this.apiService.post(RestEndpoints.UPLOAD_FILE,files,[{key:'path',value:path}]).pipe(
+      map((result: any)=>{
+        console.log("calling endpoint: ",RestEndpoints.UPLOAD_FILE,'\nbody request: ',files,'\nresponse: ',result)
+        return result;
+      }));
+  }
+
+  updateCompany(company:any){
+    return this.apiService.post(RestEndpoints.UPDATE_COMPANY,company).pipe(
+      map((result: any)=>{
+        console.log("calling endpoint: ",RestEndpoints.UPDATE_COMPANY,'\nbody request: ',company,'\nresponse: ',result)
+        return result;
+      }));
+
   }
 
 }

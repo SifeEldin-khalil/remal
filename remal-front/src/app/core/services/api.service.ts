@@ -29,7 +29,7 @@ export class ApiService {
     if (httpHeaders) {
       headers = new HttpHeaders();
       httpHeaders.forEach((header) => {
-        headers.append(header.key, header.value);
+        headers=headers.append(header.key, header.value);
       });
     }
     return this.httpClient

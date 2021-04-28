@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 const SubCompaniesNameEnum = {
     LIGHTING: "Lighting",
     PROJECTS: "Projects",
@@ -56,12 +58,24 @@ const getCompany = (req, res) => {
 
 };
 
+function deleteFiles(pathArr) {
+    for (let i = 0; i < pathArr.length; i++) {
+        try {
+            fs.unlinkSync(`./uploads/${pathArr[i]}`);
+        } catch (err) {
+            console.error(err);
+        }
+    }
+}
 
 const updateCompany = (req, res) => {
-    let companyObject = req.body;
+    let companyObject = req.body.company;
+    let filesPaths = req.body.filesPaths;
+    console.log("filesPaath", filesPaths);
     db.collection("company")
         .doc(companyObject.id).update(companyObject)
         .then((snapshot) => {
+            deleteFiles(filesPaths);
             res.status(200).json({
                 companyId: snapshot.id,
                 code: '001',
@@ -73,7 +87,7 @@ const updateCompany = (req, res) => {
             res.status(502).json({
                 code: '002',
                 error: err,
-                message: 'failed message'
+                message: 'failed to update the company'
             });
         });
 

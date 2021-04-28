@@ -9,6 +9,11 @@ import { MainHomeModule } from './features/main-home/main-home.module';
 import { SubCompaniesModule } from './features/sub-companies/sub-companies.module';
 import { DashboardModule } from './core/dashboard/dashboard.module';
 
+
+import { BlockUIModule } from 'ng-block-ui';
+import { ToastModule} from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -20,9 +25,11 @@ import { DashboardModule } from './core/dashboard/dashboard.module';
     CoreModule,
     MainHomeModule,
     SubCompaniesModule,
-    DashboardModule
+    DashboardModule,
+    BlockUIModule.forRoot(),
+    ToastModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
