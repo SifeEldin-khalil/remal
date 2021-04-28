@@ -36,9 +36,17 @@
                                     <textarea rows="5" matInput formControlName="desc"></textarea>
 
                                 </mat-form-field>
-                                <input style="display: block;" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
-                                <a type="button" (click)="onDelete()" class="btn btn-link" style="color: red; display: block;">Delete Item</a>
-
+                                <div class="row">
+                                    <div class="custom-file col-md-7">
+                                        <input class="file-up" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i style="vertical-align: bottom;" class="fas fa-times"></i>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="button" (click)="onDelete()" class="btn btn-danger">Delete Item</button>
+                                    </div>
+                                </div>
                                 <!-- <i class="fas fa-times"></i> -->
                             </div>
                             <div class="col-md-6 mt-5 box-item" *ngIf="i%2==0">
@@ -57,7 +65,17 @@
                                     <mat-label>desc</mat-label>
                                     <textarea rows="5" matInput formControlName="desc"></textarea>
                                 </mat-form-field>
-                                <input style="display: block;" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
+                                <div class="row">
+                                    <div class="custom-file col-md-7">
+                                        <input class="file-up" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
+                                    </div>
+                                    <div class="col-md-1">
+                                        <i style="vertical-align: bottom;" class="fas fa-times"></i>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="button" (click)="onDelete()" class="btn btn-danger">Delete Item</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

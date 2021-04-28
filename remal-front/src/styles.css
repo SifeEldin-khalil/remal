@@ -192,3 +192,10 @@ hr {
 .mid-div{
     align-items: center !important;
 }
+
+.file-up{
+    border: 1px solid #ccc;
+    display: inline-block;
+    /* display: block; */
+    background-color: #FFF;
+}
