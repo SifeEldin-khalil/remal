@@ -1,3 +1,20 @@
+<p-toast position="center" key="confirm" (onClose)="onReject()" [modal]="true" [baseZIndex]="5000" styleClass="custom-toast">
+    <ng-template let-message pTemplate="message">
+        <div style="text-align: center">
+            <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+            <h3>{{message.summary}}</h3>
+            <p>{{message.detail}}</p>
+        </div>
+        <div class="ui-g ui-fluid">
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onConfirm()" label="Confirm" class="btn btn-primary"></button>
+            </div>
+            <div class="ui-g-6">
+                <button type="button" pButton (click)="onReject()" label="Cancel" class="btn ui-button-secondary"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
 <form [formGroup]="companyForm" (ngSubmit)="applyChanges()" class="container">
 
     <section id="companyId" class="section dark-grey-text text-center mb-5">
@@ -38,13 +55,13 @@
                                 </mat-form-field>
                                 <div class="row">
                                     <div class="custom-file col-md-7">
-                                        <input class="file-up" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
+                                        <input class="file-up" #inputFile type="file" id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
                                     </div>
                                     <div class="col-md-1">
-                                        <i style="vertical-align: bottom;" class="fas fa-times"></i>
+                                        <i *ngIf="checkFileUploaded(i,Categories.PROJECT)" (click)="inputFile.value = ''; deleteUploadFile(i,Categories.PROJECT)" style="vertical-align: bottom;" class="fas fa-times"></i>
                                     </div>
                                     <div class="col-md-4">
-                                        <button type="button" (click)="onDelete()" class="btn btn-danger">Delete Item</button>
+                                        <button type="button" (click)="showConfirm(i,Categories.PROJECT)" class="btn btn-danger">Delete Item</button>
                                     </div>
                                 </div>
                                 <!-- <i class="fas fa-times"></i> -->
@@ -70,10 +87,10 @@
                                         <input class="file-up" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
                                     </div>
                                     <div class="col-md-1">
-                                        <i style="vertical-align: bottom;" class="fas fa-times"></i>
+                                        <i *ngIf="checkFileUploaded(i,Categories.PROJECT)" style="vertical-align: bottom;" class="fas fa-times"></i>
                                     </div>
                                     <div class="col-md-4">
-                                        <button type="button" (click)="onDelete()" class="btn btn-danger">Delete Item</button>
+                                        <button type="button" (click)="showConfirm(i,Categories.PROJECT)" class="btn btn-danger">Delete Item</button>
                                     </div>
                                 </div>
                             </div>

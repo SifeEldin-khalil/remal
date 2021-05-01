@@ -33,8 +33,10 @@ export class SubCompanyComponent implements OnInit {
   filesToUpload:File[];
   filesToUploadMetaData:FileMetaData[];
   filesToRemove:string[];
-
   companyForm: FormGroup;
+
+  deleteItemIndex:number;
+  deleteItemCategory:string;
   constructor(private route:ActivatedRoute,
     private formBuilder:FormBuilder,
     private companyService:CompanyService,
@@ -353,11 +355,45 @@ console.log("company",company);
   })
 }
 
-onDelete(){
-  
+checkFileUploaded(index:number,category:string):boolean{
+  let fileIndex=this.filesToUploadMetaData.findIndex(item=>item.index==index && item.category==category);
+  if(fileIndex>-1)
+    return true;
+  return false;
+}
+
+deleteUploadFile(index:number,category:string){
+  let fileIndex=this.filesToUploadMetaData.findIndex(item=>item.index==index && item.category==category);
+  if(fileIndex>-1){
+    this.filesToUpload.splice(fileIndex,1);
+    this.filesToUploadMetaData.splice(fileIndex,1);
+  }
+}
+
+onDeleteItem(i:number,category:string){
+  this.deleteUploadFile(i,category);
+  if(category == Categories.PROJECT){
+    this.projects.controls.splice(i,1);
+  }
 }
 cancel(){
   this.router.navigate(['../../Dashboard'],{relativeTo:this.route});
+}
+
+showConfirm(i:number,category:string){
+  this.deleteItemIndex=i;
+  this.deleteItemCategory=category;
+  this.toastService.showConfirm(Messages.CONFIRM_DELETE_ITEM);
+}
+
+
+onConfirm() {
+  this.toastService.clear();
+  this.onDeleteItem(this.deleteItemIndex,this.deleteItemCategory);
+}
+
+onReject() {
+  this.toastService.clear();
 }
 
 }
