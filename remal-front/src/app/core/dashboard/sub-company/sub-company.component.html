@@ -200,13 +200,13 @@
                 OUR PARTNERS
             </h1>
             <hr>
-            <div style="display: flex;" class="mb-5">
-                <button style="float: left;" type="button" class="btn btn-success">Add New Client</button>
+            <div style="display: flex;" class="mb-1">
+                <button style="float: left;" type="button" class="btn btn-success">Add New Partner</button>
             </div>
             <div formGroupName="partnersGroup">
                 <div formArrayName="partners">
                     <div class="row col-md-12 mid-div">
-                        <div class="col-md-4" [formGroupName]="i" *ngFor="let p of partners.controls; let i=index">
+                        <div class="col-md-4 mt-5" [formGroupName]="i" *ngFor="let p of partners.controls; let i=index">
                             <div class="row">
                                 <div class="custom-file col-md-10">
                                     <input class="file-up" #inputFile type="file" id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
