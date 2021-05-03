@@ -14,6 +14,7 @@ import { CompanyService } from '../services/company.service';
 export class FoodBeverageComponent implements OnInit {
   public contactForm: FormGroup;
   galleryImages:Item[];
+  about:string;
   isLoading:boolean;
   isSubmitted:boolean;
   constructor(private formBuilder: FormBuilder,
@@ -42,6 +43,7 @@ export class FoodBeverageComponent implements OnInit {
       console.log(res['company']);
       if(res['company']!=undefined){
         this.galleryImages=res['company']['gallery'];
+        this.about=res['company']['about'];
       }
     }, err=>{
       console.log("*******error*****");

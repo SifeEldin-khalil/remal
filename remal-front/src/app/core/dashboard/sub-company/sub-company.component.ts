@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 import { Categories } from '../../enums/categories.enum';
 import { Messages } from '../../enums/messages.enum';
 import { SubCompaniesNames } from '../../enums/sub-companies-names.enum';
+import { SubCompaniesNavs } from '../../enums/sub-companies-navs.enum';
 import { LoadingService } from '../../services/loading.service';
 import { ToastService } from '../../services/toast.service';
 
@@ -63,7 +64,7 @@ export class SubCompanyComponent implements OnInit {
     this.initForm();
     this.route.params.subscribe(params => {
       if (params['name'] ){
-       this.companyName=params['name'];
+       this.companyName=this.getCompanyName(params['name']);
       }
       if (params['branch'] ){
         this.companyBranch=params['branch'];
@@ -75,6 +76,9 @@ export class SubCompanyComponent implements OnInit {
 
   initForm(){
     this.companyForm = this.formBuilder.group({
+      aboutGroup:this.formBuilder.group({
+        about:''
+      }),
       projectsGroup: this.formBuilder.group({
         projects: this.formBuilder.array([])
       }),
@@ -94,6 +98,23 @@ export class SubCompanyComponent implements OnInit {
   });
   }
 
+
+  getCompanyName(companyName:string){
+    if(companyName==SubCompaniesNavs.LIGHTING)
+    return SubCompaniesNames.LIGHTING;
+    if(companyName==SubCompaniesNavs.PROJECTS){
+      return SubCompaniesNames.PROJECTS;
+    }if(companyName==SubCompaniesNavs.FOOD_AND_BEVERAGE){
+      return SubCompaniesNames.FOOD_AND_BEVERAGE;
+    }if(companyName==SubCompaniesNavs.REAL_ESTATE){
+      return SubCompaniesNames.REAL_ESTATE;
+    }if(companyName==SubCompaniesNavs.SECURITY){
+      return SubCompaniesNames.SECURITY;
+    }if(companyName==SubCompaniesNavs.FIRST_CLASS){
+      return SubCompaniesNames.FIRST_CLASS;
+    }
+  }
+
   setAllFlags(){
     console.log(this.companyName);
     if(this.companyName==SubCompaniesNames.LIGHTING){
@@ -108,6 +129,11 @@ export class SubCompanyComponent implements OnInit {
     }
   }
 
+  getAbout(about:string){
+    this.about.patchValue({
+      about:about
+    });
+  }
   getAllProjects(projectList:Project[]){
     for(let item of projectList){
       this.projects.push(this.formBuilder.group({
@@ -197,6 +223,10 @@ export class SubCompanyComponent implements OnInit {
 
 
 
+  get about()  {
+    return this.companyForm.get("aboutGroup");
+  }
+
   get projects() : FormArray {
     return this.companyForm.get("projectsGroup").get("projects") as FormArray;
   }
@@ -222,6 +252,7 @@ export class SubCompanyComponent implements OnInit {
       console.log(res['company']);
       this.companyId=res['company']['id'];
       if(res['company']!=undefined){
+        this.getAbout(res['company']['about']);
         if(this.projectsFlag)
           this.getAllProjects(res['company'][Categories.PROJECT]==undefined?[]:res['company'][Categories.PROJECT]);
         if(this.productsFlag)
@@ -344,7 +375,8 @@ saveChangesWithoutFiles(){
   var company={
     filesPaths:this.filesToRemove
     ,company:{
-    id:this.companyId
+    id:this.companyId,
+    about:this.about['controls']['about'].value
   }};
   if(this.projectsFlag){
     company.company[Categories.PROJECT]=this.extractAllProjects();
@@ -420,6 +452,7 @@ onAddItem(itemData:any,file:File){
   }else if(category == Categories.PRODUCT){
     this.products.controls.push(this.formBuilder.group({
       title: itemData.title,
+      category:itemData.category,
       path:null
     }));
     this.filesToUpload.push(file);

@@ -13,6 +13,7 @@ import { CompanyService } from '../services/company.service';
 })
 export class FirstClassComponent implements OnInit {
   galleryImages:string[];
+  about:string;
   public contactForm: FormGroup;
   isLoading:boolean;
   isSubmitted:boolean;
@@ -41,6 +42,7 @@ export class FirstClassComponent implements OnInit {
       console.log(res['company']);
       if(res['company']!=undefined){
         this.galleryImages=res['company']['gallery'];
+        this.about=res['company']['about'];
       }
     }, err=>{
       console.log("*******error*****");

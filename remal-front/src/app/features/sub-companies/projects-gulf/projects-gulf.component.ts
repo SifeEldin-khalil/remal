@@ -18,6 +18,7 @@ export class ProjectsGulfComponent implements OnInit {
   clientList:Item[];
   galleryImages:string[];
   projectList:Project[];
+  about:string;
   public contactForm: FormGroup;
   isLoading:boolean;
   isSubmitted:boolean;
@@ -49,6 +50,7 @@ export class ProjectsGulfComponent implements OnInit {
         this.partnerList=res['company']['partner'];
         this.clientList=res['company']['client'];
         this.galleryImages=res['company']['gallery'];
+        this.about=res['company']['about'];
       }
     }, err=>{
       console.log("*******error*****");

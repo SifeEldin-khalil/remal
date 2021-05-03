@@ -34,6 +34,7 @@ export class AddItemDialogComponent implements OnInit {
     this.itemForm = this.formBuilder.group({
       title:['',[Validators.required]],
       desc:[''],
+      category:[''],
     });
   }
 

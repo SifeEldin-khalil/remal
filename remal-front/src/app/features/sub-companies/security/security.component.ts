@@ -15,6 +15,7 @@ import { CompanyService } from '../services/company.service';
 export class SecurityComponent implements OnInit {
   galleryImages:string[];
   projectList:Project[];
+  about:string;
   public contactForm: FormGroup;
   isLoading:boolean;
   isSubmitted:boolean;
@@ -44,6 +45,7 @@ export class SecurityComponent implements OnInit {
       if(res['company']!=undefined){
         this.projectList=res['company']['project'];
         this.galleryImages=res['company']['gallery'];
+        this.about=res['company']['about'];
       }
     }, err=>{
       console.log("*******error*****");
