@@ -511,7 +511,10 @@ openAddItemDialog(category:string) {
     });
     this.dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      if(result.code=='001'){
+      if (result == undefined){
+        this.dialogRef = null;
+      }
+      else if(result.code=='001'){
         this.onAddItem(result.itemData,result.file);
       }
       this.dialogRef = null;
