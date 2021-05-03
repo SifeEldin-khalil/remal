@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/features/models/item.model';
 import { Project } from 'src/app/features/models/project.model';
 import { CompanyService } from 'src/app/features/sub-companies/services/company.service';
+import { AddItemDialogComponent } from 'src/app/shared/add-item-dialog/add-item-dialog.component';
 import { environment } from 'src/environments/environment';
 import { Categories } from '../../enums/categories.enum';
 import { Messages } from '../../enums/messages.enum';
@@ -37,12 +39,15 @@ export class SubCompanyComponent implements OnInit {
 
   deleteItemIndex:number;
   deleteItemCategory:string;
+  dialogRef: MatDialogRef<AddItemDialogComponent>;
+  addItemCategory:string;
   constructor(private route:ActivatedRoute,
     private formBuilder:FormBuilder,
     private companyService:CompanyService,
     private loadingService:LoadingService,
     private toastService:ToastService,
-    private router:Router) {
+    private router:Router,
+    public dialog: MatDialog) {
       this.projectsFlag=false;
       this.productsFlag=false;
       this.galleryFlag=false;
@@ -239,6 +244,12 @@ export class SubCompanyComponent implements OnInit {
 
 handleFileInput(files: FileList,i:number,category:string) {
   console.log("files",files.item(0));
+  console.log("files",files[0].type);
+  const mimeType = files[0].type;
+  if (mimeType.match(/image\/*/) == null) {
+      // this.message = "Only images are supported.";
+      return;
+  }
     let fileIndex=this.filesToUploadMetaData.findIndex(item=>item.index==i && item.category==category);
     console.log("file index",fileIndex);
     if(fileIndex>-1){
@@ -281,27 +292,37 @@ saveChangesWithFiles(){
       let item =this.filesToUploadMetaData[i];
       if(item.category==Categories.PROJECT){
         var oldValue=this.projects.controls[item.index]['controls']['path'].value;
-        this.filesToRemove.push(oldValue);
+        if(oldValue!=null){
+          this.filesToRemove.push(oldValue);
+        }
         this.projects.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
       }
       if(item.category==Categories.PRODUCT){
         var oldValue =this.products.controls[item.index]['controls']['path'].value;
-        this.filesToRemove.push(oldValue);
+        if(oldValue!=null){
+          this.filesToRemove.push(oldValue);
+        }
         this.products.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
       }
       else if(item.category==Categories.GALLERY){
         var oldValue = this.gallery.controls[item.index]['controls']['path'].value;
-        this.filesToRemove.push(oldValue);
+        if(oldValue!=null){
+          this.filesToRemove.push(oldValue);
+        }
         this.gallery.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
       }
       else if(item.category==Categories.PARTNER){
         var oldValue=this.partners.controls[item.index]['controls']['path'].value;
-        this.filesToRemove.push(oldValue);
+        if(oldValue!=null){
+          this.filesToRemove.push(oldValue);
+        }
         this.partners.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
       }
       else if(item.category==Categories.CLIENT){
         var oldValue = this.clients.controls[item.index]['controls']['path'].value;
-        this.filesToRemove.push(oldValue);
+        if(oldValue!=null){
+         this.filesToRemove.push(oldValue);
+        }
         this.clients.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
       }
     }
@@ -344,6 +365,7 @@ console.log("company",company);
   this.companyService.updateCompany(company).subscribe((result)=>{
     this.loadingService.stopLoading();
     console.log("result",result);
+    this.resetAllData();
   },err=>{
     console.log("error",err);
     this.loadingService.stopLoading();
@@ -374,8 +396,58 @@ onDeleteItem(i:number,category:string){
   this.deleteUploadFile(i,category);
   if(category == Categories.PROJECT){
     this.projects.controls.splice(i,1);
+  }else if(category == Categories.PRODUCT){
+    this.products.controls.splice(i,1);
+  }else if(category == Categories.GALLERY){
+    this.gallery.controls.splice(i,1);
+  }else if(category == Categories.PARTNER){
+    this.partners.controls.splice(i,1);
+  }else if(category == Categories.CLIENT){
+    this.clients.controls.splice(i,1);
   }
 }
+
+onAddItem(itemData:any,file:File){
+  var category = this.addItemCategory;
+  if(category == Categories.PROJECT){
+    this.projects.controls.push(this.formBuilder.group({
+      title: itemData.title,
+      desc: itemData.desc,
+      path:null
+    }));
+    this.filesToUpload.push(file);
+    this.filesToUploadMetaData.push({index:this.projects.controls.length-1,category:Categories.PROJECT});
+  }else if(category == Categories.PRODUCT){
+    this.products.controls.push(this.formBuilder.group({
+      title: itemData.title,
+      path:null
+    }));
+    this.filesToUpload.push(file);
+    this.filesToUploadMetaData.push({index:this.products.controls.length-1,category:Categories.PRODUCT});
+  }else if(category == Categories.GALLERY){
+    this.gallery.controls.push(this.formBuilder.group({
+      title: itemData.title,
+      path:null
+    }));
+    this.filesToUpload.push(file);
+    this.filesToUploadMetaData.push({index:this.gallery.controls.length-1,category:Categories.GALLERY});
+  }else if(category == Categories.PARTNER){
+    this.partners.controls.push(this.formBuilder.group({
+      title: itemData.title,
+      path:null
+    }));
+    this.filesToUpload.push(file);
+    this.filesToUploadMetaData.push({index:this.partners.controls.length-1,category:Categories.PARTNER});
+  }else if(category == Categories.CLIENT){
+    this.clients.controls.push(this.formBuilder.group({
+      title: itemData.title,
+      path:null
+    }));
+    this.filesToUpload.push(file);
+    this.filesToUploadMetaData.push({index:this.clients.controls.length-1,category:Categories.CLIENT});
+  }
+}
+
 cancel(){
   this.router.navigate(['../../Dashboard'],{relativeTo:this.route});
 }
@@ -394,6 +466,43 @@ onConfirm() {
 
 onReject() {
   this.toastService.clear();
+}
+
+
+openAddItemDialog(category:string) {
+  this.addItemCategory=category;
+  if (this.dialogRef == null) {
+    this.dialogRef = this.dialog.open(AddItemDialogComponent, {
+      width: '800px',
+      data: {category: this.addItemCategory}
+    });
+    this.dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if(result.code=='001'){
+        this.onAddItem(result.itemData,result.file);
+      }
+      this.dialogRef = null;
+    });
+  }
+
+}
+
+readUploadFileAsImage(file:File){
+  const reader = new FileReader();
+  reader.readAsDataURL(file); 
+  reader.onload = (_event) => { 
+    return reader.result; 
+  }
+}
+
+resetAllData(){
+  this.filesToUpload=[];
+  this.filesToUploadMetaData=[];
+  this.filesToRemove=[];
+  this.deleteItemIndex=null;
+  this.deleteItemCategory=null;
+  this.dialogRef=null;
+  this.addItemCategory=null;
 }
 
 }
