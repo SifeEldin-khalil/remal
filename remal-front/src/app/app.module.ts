@@ -13,6 +13,7 @@ import { DashboardModule } from './core/dashboard/dashboard.module';
 import { BlockUIModule } from 'ng-block-ui';
 import { ToastModule} from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { AddItemDialogComponent } from './shared/add-item-dialog/add-item-dialog.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,9 @@ import { MessageService } from 'primeng/api';
     ToastModule
   ],
   providers: [MessageService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[
+    AddItemDialogComponent
+  ]
 })
 export class AppModule { }

@@ -18,6 +18,7 @@ export class ProjectsEgComponent implements OnInit {
   partnerList:Item[];
   clientList:Item[];
   projectList:Project[];
+  about:string;
   isLoading:boolean;
   isSubmitted:boolean;
   public contactForm: FormGroup;
@@ -50,6 +51,7 @@ export class ProjectsEgComponent implements OnInit {
         this.partnerList=res['company']['partner'];
         this.clientList=res['company']['client'];
         this.galleryImages=res['company']['gallery'];
+        this.about=res['company']['about'];
       }
     }, err=>{
       console.log("*******error*****");

@@ -11,7 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 // slider component
 import { SliderComponent } from './slider/slider.component';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { MDBBootstrapModule, TableModule } from 'angular-bootstrap-md';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GalleryComponent } from './gallery/gallery.component';
 
@@ -19,10 +19,26 @@ import { GalleryComponent } from './gallery/gallery.component';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { HttpClientModule} from '@angular/common/http';
 import { CareerCardComponent } from './career-card/career-card.component';
+import { AddItemDialogComponent } from './add-item-dialog/add-item-dialog.component';
+
+
+import { MatButtonModule } from '@angular/material/button';
+import { MatBadgeModule } from'@angular/material/badge';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { InputTextModule } from 'primeng/inputtext';
+
+
+
+
 
 
 @NgModule({
-  declarations: [CompanyCardComponent, ContactFormComponent, SliderComponent, GalleryComponent, CareerCardComponent],
+  declarations: [CompanyCardComponent, ContactFormComponent, SliderComponent, GalleryComponent, CareerCardComponent, AddItemDialogComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -30,14 +46,34 @@ import { CareerCardComponent } from './career-card/career-card.component';
     MDBBootstrapModule.forRoot(),
     NgbModule,
     NgxGalleryModule,
-    HttpClientModule
+    HttpClientModule,
+    MatInputModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    // MatTableModule,
+    // MatIconModule,
+    // MatBadgeModule,
+    // MatSlideToggleModule,
+    // MatMenuModule
   ],
   exports: [
     CompanyCardComponent,
     ContactFormComponent,
     SliderComponent,
     GalleryComponent,
-    CareerCardComponent
+    CareerCardComponent,
+    AddItemDialogComponent,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    // MatFormFieldModule,
+    MatButtonModule,
+    // MatTableModule,
+    // MatIconModule,
+    // MatBadgeModule,
+    // MatSlideToggleModule,
+    // MatMenuModule
   ],
   providers: [ CompanyCardComponent ],
 

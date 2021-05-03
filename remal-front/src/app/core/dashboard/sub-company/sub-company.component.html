@@ -25,11 +25,11 @@
             </h1>
             <hr>
         </div>
-        <!-- <div class="col-md-12 mt-5 form-group" formGroupName="aboutGroup">
+        <div class="col-md-12 mt-5 form-group" formGroupName="aboutGroup">
             <mat-form-field class="example-full-width" appearance="outline">
                 <textarea rows="5" matInput formControlName="about"></textarea>
             </mat-form-field>
-        </div> -->
+        </div>
     </section>
     <section *ngIf="projectsFlag" id="proujectsId" class="section dark-grey-text text-center">
         <div class="container mb-5">
@@ -41,7 +41,7 @@
                     <hr>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-success">Add New Project</button>
+                    <button type="button" (click)="openAddItemDialog(Categories.PROJECT)" class="btn btn-success">Add New Project</button>
                 </div>
                 <div formGroupName="projectsGroup">
                     <div formArrayName="projects">
@@ -56,7 +56,7 @@
                                     <textarea rows="5" matInput formControlName="desc"></textarea>
 
                                 </mat-form-field>
-                                <div class="row">
+                                <div *ngIf="p.controls.path.value != null" class="row">
                                     <div class="custom-file col-md-7">
                                         <input class="file-up" #inputFile type="file" id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
                                     </div>
@@ -70,11 +70,11 @@
                                 <!-- <i class="fas fa-times"></i> -->
                             </div>
                             <div class="col-md-6 mt-5 box-item" *ngIf="i%2==0">
-                                <img [src]="getImagePath(p.controls.path.value)" style="height: 260px; width: 100%;" class="box-img">
+                                <img *ngIf="p.controls.path.value != null" [src]="getImagePath(p.controls.path.value)" style="height: 260px; width: 100%;" class="box-img">
                             </div>
 
                             <div class="col-md-6 mt-5 box-item" *ngIf="i%2==1">
-                                <img [src]="getImagePath(p.controls.path.value)" style="height: 260px; width: 100%;" class="box-img">
+                                <img *ngIf="p.controls.path.value != null" [src]="getImagePath(p.controls.path.value)" style="height: 260px; width: 100%;" class="box-img">
                             </div>
                             <div class="col-md-6 mt-5" *ngIf="i%2==1" [formGroupName]="i">
                                 <mat-form-field class="example-full-width" appearance="outline">
@@ -85,12 +85,12 @@
                                     <mat-label>desc</mat-label>
                                     <textarea rows="5" matInput formControlName="desc"></textarea>
                                 </mat-form-field>
-                                <div class="row">
+                                <div *ngIf="p.controls.path.value != null" class="row">
                                     <div class="custom-file col-md-7">
-                                        <input class="file-up" type="file" id="file" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
+                                        <input class="file-up" type="file" #inputFile id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
                                     </div>
                                     <div class="col-md-1">
-                                        <i *ngIf="checkFileUploaded(i,Categories.PROJECT)" style="vertical-align: bottom;" class="fas fa-times"></i>
+                                        <i *ngIf="checkFileUploaded(i,Categories.PROJECT)" (click)="inputFile.value = ''; deleteUploadFile(i,Categories.PROJECT)" style="vertical-align: bottom;" class="fas fa-times"></i>
                                     </div>
                                     <div class="col-md-4">
                                         <button type="button" (click)="showConfirm(i,Categories.PROJECT)" class="btn btn-danger">Delete Item</button>
@@ -116,7 +116,7 @@
                     <hr>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-success">Add New Product</button>
+                    <button type="button" (click)="openAddItemDialog(Categories.PRODUCT)" class="btn btn-success">Add New Product</button>
                 </div>
                 <div formGroupName="productsGroup">
                     <div formArrayName="products">
@@ -131,20 +131,20 @@
                                         <mat-label>category</mat-label>
                                         <input matInput formControlName="category">
                                     </mat-form-field>
-                                    <div class="row">
+                                    <div class="row" *ngIf="p.controls.path.value != null">
                                         <div class="custom-file col-md-10">
-                                            <input class="file-up" #inputFile type="file" id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
+                                            <input class="file-up" #inputFile type="file" #inputFile id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.PRODUCT)">
                                         </div>
                                         <div class="col-md-2">
-                                            <i *ngIf="checkFileUploaded(i,Categories.PROJECT)" (click)="inputFile.value = ''; deleteUploadFile(i,Categories.PROJECT)" style="vertical-align: bottom;" class="fas fa-times"></i>
+                                            <i *ngIf="checkFileUploaded(i,Categories.PRODUCT)" (click)="inputFile.value = ''; deleteUploadFile(i,Categories.PRODUCT)" style="vertical-align: bottom;" class="fas fa-times"></i>
                                         </div>
                                         <div class="pl-3">
-                                            <button type="button" (click)="showConfirm(i,Categories.PROJECT)" class="btn btn-danger">Delete Item</button>
+                                            <button type="button" (click)="showConfirm(i,Categories.PRODUCT)" class="btn btn-danger">Delete Item</button>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 mt-5 box-item">
-                                    <img [src]="getImagePath(p.controls.path.value)" class="box-img">
+                                    <img *ngIf="p.controls.path.value != null" [src]="getImagePath(p.controls.path.value)" class="box-img">
                                 </div>
                             </div>
                         </div>
@@ -164,7 +164,7 @@
                     <hr>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-success">Add New Image</button>
+                    <button type="button" (click)="openAddItemDialog(Categories.GALLERY)" class="btn btn-success">Add New Image</button>
                 </div>
                 <div formGroupName="galleryGroup">
                     <div formArrayName="gallery">
@@ -174,18 +174,18 @@
                                     <mat-label>title</mat-label>
                                     <input matInput formControlName="title">
                                 </mat-form-field>
-                                <div class="row">
+                                <div class="row" *ngIf="p.controls.path.value != null">
                                     <div class="custom-file col-md-10">
-                                        <input class="file-up" #inputFile type="file" id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
+                                        <input class="file-up" #inputFile type="file" id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.GALLERY)">
                                     </div>
                                     <div class="col-md-2">
-                                        <i *ngIf="checkFileUploaded(i,Categories.PROJECT)" (click)="inputFile.value = ''; deleteUploadFile(i,Categories.PROJECT)" style="vertical-align: bottom;" class="fas fa-times"></i>
+                                        <i *ngIf="checkFileUploaded(i,Categories.GALLERY)" (click)="inputFile.value = ''; deleteUploadFile(i,Categories.GALLERY)" style="vertical-align: bottom;" class="fas fa-times"></i>
                                     </div>
                                     <div class="pl-3">
-                                        <button type="button" (click)="showConfirm(i,Categories.PROJECT)" class="btn btn-danger">Delete Item</button>
+                                        <button type="button" (click)="showConfirm(i,Categories.GALLERY)" class="btn btn-danger">Delete Item</button>
                                     </div>
                                 </div>
-                                <img style="width: 100%; height: 150px;" [src]="getImagePath(p.controls.path.value)" class="mt-2 box-img">
+                                <img *ngIf="p.controls.path.value != null" style="width: 100%; height: 150px;" [src]="getImagePath(p.controls.path.value)" class="mt-2 box-img">
                             </div>
                         </div>
                     </div>
@@ -201,25 +201,25 @@
             </h1>
             <hr>
             <div style="display: flex;" class="mb-1">
-                <button style="float: left;" type="button" class="btn btn-success">Add New Partner</button>
+                <button style="float: left;" (click)="openAddItemDialog(Categories.PARTNER)" type="button" class="btn btn-success">Add New Partner</button>
             </div>
             <div formGroupName="partnersGroup">
                 <div formArrayName="partners">
                     <div class="row col-md-12 mid-div">
                         <div class="col-md-4 mt-5" [formGroupName]="i" *ngFor="let p of partners.controls; let i=index">
-                            <div class="row">
+                            <div class="row" *ngIf="p.controls.path.value != null">
                                 <div class="custom-file col-md-10">
-                                    <input class="file-up" #inputFile type="file" id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
+                                    <input class="file-up" #inputFile type="file" id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.PARTNER)">
                                 </div>
                                 <div class="col-md-2">
-                                    <i *ngIf="checkFileUploaded(i,Categories.PROJECT)" (click)="inputFile.value = ''; deleteUploadFile(i,Categories.PROJECT)" style="vertical-align: bottom;" class="fas fa-times"></i>
+                                    <i *ngIf="checkFileUploaded(i,Categories.PARTNER)" (click)="inputFile.value = ''; deleteUploadFile(i,Categories.PARTNER)" style="vertical-align: bottom;" class="fas fa-times"></i>
                                 </div>
                                 <div class="pl-3">
-                                    <button type="button" (click)="showConfirm(i,Categories.PROJECT)" class="btn btn-danger">Delete Item</button>
+                                    <button type="button" (click)="showConfirm(i,Categories.PARTNER)" class="btn btn-danger">Delete Item</button>
                                 </div>
                             </div>
                             <div class="box-item">
-                                <img style="height: 200px;" [src]="getImagePath(p.controls.path.value)" class="mt-2 box-img">
+                                <img *ngIf="p.controls.path.value != null" style="height: 200px;" [src]="getImagePath(p.controls.path.value)" class="mt-2 box-img">
                             </div>
                         </div>
                     </div>
@@ -235,24 +235,24 @@
             </h1>
             <hr>
             <div style="display: flex;" class="mb-5">
-                <button style="float: left;" type="button" class="btn btn-success">Add New Client</button>
+                <button style="float: left;" type="button" (click)="openAddItemDialog(Categories.CLIENT)" class="btn btn-success">Add New Client</button>
             </div>
             <div formGroupName="clientsGroup">
                 <div formArrayName="clients" class="row col-md-12 mt-5 mid-div">
                     <div class="col-md-4" [formGroupName]="i" *ngFor="let p of clients.controls; let i=index">
-                        <div class="row">
+                        <div class="row" *ngIf="p.controls.path.value != null">
                             <div class="custom-file col-md-10">
-                                <input class="file-up" #inputFile type="file" id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.PROJECT)">
+                                <input class="file-up" #inputFile type="file" id="inputFile" (change)="handleFileInput($event.target.files,i,Categories.CLIENT)">
                             </div>
                             <div class="col-md-2">
-                                <i *ngIf="checkFileUploaded(i,Categories.PROJECT)" (click)="inputFile.value = ''; deleteUploadFile(i,Categories.PROJECT)" style="vertical-align: bottom;" class="fas fa-times"></i>
+                                <i *ngIf="checkFileUploaded(i,Categories.CLIENT)" (click)="inputFile.value = ''; deleteUploadFile(i,Categories.CLIENT)" style="vertical-align: bottom;" class="fas fa-times"></i>
                             </div>
                             <div class="pl-3">
-                                <button type="button" (click)="showConfirm(i,Categories.PROJECT)" class="btn btn-danger">Delete Item</button>
+                                <button type="button" (click)="showConfirm(i,Categories.CLIENT)" class="btn btn-danger">Delete Item</button>
                             </div>
                         </div>
                         <div class="box-item">
-                            <img style="height: 200px;" [src]="getImagePath(p.controls.path.value)" class="  box-img">
+                            <img *ngIf="p.controls.path.value != null" style="height: 200px;" [src]="getImagePath(p.controls.path.value)" class="  box-img">
                         </div>
                     </div>
                 </div>
