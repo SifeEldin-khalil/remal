@@ -22,7 +22,7 @@
                 </mat-form-field>
             </div>
             <div class="col-md-12">
-                <input type="file" (change)="handleFileInput($event.target.files)">
+                <input type="file" accept=".png,.jpg,.jpeg" (change)="handleFileInput($event)">
             </div>
 
         </div>

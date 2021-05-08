@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 declare var $:any;
 
 @Component({
@@ -7,8 +8,8 @@ declare var $:any;
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  
-  constructor() { }
+  flagAdmin:boolean=false;
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
    this.jQueryHeaderShrink();
@@ -24,6 +25,19 @@ export class HeaderComponent implements OnInit {
         $('nav').addClass('shrink');
       }
     });
+
+    this.authService.changeToken.subscribe(()=>{
+      if(sessionStorage.getItem("token")!=null){
+        this.flagAdmin=true;
+      }
+      else{
+        this.flagAdmin=false;
+      }
+    })
+  }
+
+  signout(){
+    this.authService.SignOut();    
   }
 
 }

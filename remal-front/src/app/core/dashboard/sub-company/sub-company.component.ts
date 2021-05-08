@@ -7,6 +7,7 @@ import { Project } from 'src/app/features/models/project.model';
 import { CompanyService } from 'src/app/features/sub-companies/services/company.service';
 import { AddItemDialogComponent } from 'src/app/shared/add-item-dialog/add-item-dialog.component';
 import { environment } from 'src/environments/environment';
+import { Branches } from '../../enums/branches.enum';
 import { Categories } from '../../enums/categories.enum';
 import { Messages } from '../../enums/messages.enum';
 import { SubCompaniesNames } from '../../enums/sub-companies-names.enum';
@@ -112,6 +113,22 @@ export class SubCompanyComponent implements OnInit {
       return SubCompaniesNames.SECURITY;
     }if(companyName==SubCompaniesNavs.FIRST_CLASS){
       return SubCompaniesNames.FIRST_CLASS;
+    }
+  }
+
+  getCompanyNav(companyName:string){
+    if(companyName==SubCompaniesNames.LIGHTING)
+    return SubCompaniesNavs.LIGHTING;
+    if(companyName==SubCompaniesNames.PROJECTS){
+      return SubCompaniesNavs.PROJECTS;
+    }if(companyName==SubCompaniesNames.FOOD_AND_BEVERAGE){
+      return SubCompaniesNavs.FOOD_AND_BEVERAGE;
+    }if(companyName==SubCompaniesNames.REAL_ESTATE){
+      return SubCompaniesNavs.REAL_ESTATE;
+    }if(companyName==SubCompaniesNames.SECURITY){
+      return SubCompaniesNavs.SECURITY;
+    }if(companyName==SubCompaniesNames.FIRST_CLASS){
+      return SubCompaniesNavs.FIRST_CLASS;
     }
   }
 
@@ -248,6 +265,9 @@ export class SubCompanyComponent implements OnInit {
   }
 
   getCompanyByNameAndBranch(name:string,branch:string){
+    if(name==SubCompaniesNames.FOOD_AND_BEVERAGE){
+      branch = Branches.EGYPT;
+    }
     this.companyService.getCompanyByNameAndBranch(name,branch).subscribe(res=>{
       console.log(res['company']);
       this.companyId=res['company']['id'];
@@ -273,12 +293,14 @@ export class SubCompanyComponent implements OnInit {
     return environment.apiUrlImage+relativePath;
   }
 
-handleFileInput(files: FileList,i:number,category:string) {
+handleFileInput(event,i:number,category:string) {
+  var files:FileList = event.target.files;
   console.log("files",files.item(0));
   console.log("files",files[0].type);
   const mimeType = files[0].type;
   if (mimeType.match(/image\/*/) == null) {
-      // this.message = "Only images are supported.";
+      this.toastService.error(Messages.ERROR_UPLOAD_FILE_INVALID);  
+      event.target.value=null;  
       return;
   }
     let fileIndex=this.filesToUploadMetaData.findIndex(item=>item.index==i && item.category==category);
@@ -318,7 +340,8 @@ saveChangesWithFiles(){
   for (var i = 0; i < this.filesToUpload.length; i++) {
     formData.append("uploads[]", this.filesToUpload[i], this.filesToUpload[i].name);
   }
-  this.companyService.uploadFiles(formData,`${this.companyBranch}/${this.companyName}`).subscribe((result:any)=>{
+  var companyPath:string=this.getCompanyNav(this.companyName);
+  this.companyService.uploadFiles(formData,`${this.companyBranch}/${companyPath}`).subscribe((result:any)=>{
     for(let i=0;i<this.filesToUploadMetaData.length;i++){
       let item =this.filesToUploadMetaData[i];
       if(item.category==Categories.PROJECT){
@@ -326,35 +349,35 @@ saveChangesWithFiles(){
         if(oldValue!=null){
           this.filesToRemove.push(oldValue);
         }
-        this.projects.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
+        this.projects.controls[item.index].patchValue({ path:`${this.companyBranch}/${companyPath}/${result.files[i].filename}`});
       }
       if(item.category==Categories.PRODUCT){
         var oldValue =this.products.controls[item.index]['controls']['path'].value;
         if(oldValue!=null){
           this.filesToRemove.push(oldValue);
         }
-        this.products.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
+        this.products.controls[item.index].patchValue({ path:`${this.companyBranch}/${companyPath}/${result.files[i].filename}`});
       }
       else if(item.category==Categories.GALLERY){
         var oldValue = this.gallery.controls[item.index]['controls']['path'].value;
         if(oldValue!=null){
           this.filesToRemove.push(oldValue);
         }
-        this.gallery.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
+        this.gallery.controls[item.index].patchValue({ path:`${this.companyBranch}/${companyPath}/${result.files[i].filename}`});
       }
       else if(item.category==Categories.PARTNER){
         var oldValue=this.partners.controls[item.index]['controls']['path'].value;
         if(oldValue!=null){
           this.filesToRemove.push(oldValue);
         }
-        this.partners.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
+        this.partners.controls[item.index].patchValue({ path:`${this.companyBranch}/${companyPath}/${result.files[i].filename}`});
       }
       else if(item.category==Categories.CLIENT){
         var oldValue = this.clients.controls[item.index]['controls']['path'].value;
         if(oldValue!=null){
          this.filesToRemove.push(oldValue);
         }
-        this.clients.controls[item.index].patchValue({ path:`${this.companyBranch}/${this.companyName}/${result.files[i].filename}`});
+        this.clients.controls[item.index].patchValue({ path:`${this.companyBranch}/${companyPath}/${result.files[i].filename}`});
       }
     }
     this.loadingService.stopLoading();
@@ -427,14 +450,29 @@ deleteUploadFile(index:number,category:string){
 onDeleteItem(i:number,category:string){
   this.deleteUploadFile(i,category);
   if(category == Categories.PROJECT){
+    var pathFile:string=this.projects.controls[i]['controls']['path'].value;
+    if(pathFile!=null)
+      this.filesToRemove.push(pathFile);
     this.projects.controls.splice(i,1);
   }else if(category == Categories.PRODUCT){
+    var pathFile:string=this.products.controls[i]['controls']['path'].value;
+    if(pathFile!=null)
+      this.filesToRemove.push(pathFile);
     this.products.controls.splice(i,1);
   }else if(category == Categories.GALLERY){
+    var pathFile:string=this.gallery.controls[i]['controls']['path'].value;
+    if(pathFile!=null)
+      this.filesToRemove.push(pathFile);
     this.gallery.controls.splice(i,1);
   }else if(category == Categories.PARTNER){
+    var pathFile:string=this.partners.controls[i]['controls']['path'].value;
+    if(pathFile!=null)
+      this.filesToRemove.push(pathFile);
     this.partners.controls.splice(i,1);
   }else if(category == Categories.CLIENT){
+    var pathFile:string=this.clients.controls[i]['controls']['path'].value;
+    if(pathFile!=null)
+      this.filesToRemove.push(pathFile);
     this.clients.controls.splice(i,1);
   }
 }
@@ -465,6 +503,7 @@ onAddItem(itemData:any,file:File){
     this.filesToUpload.push(file);
     this.filesToUploadMetaData.push({index:this.gallery.controls.length-1,category:Categories.GALLERY});
   }else if(category == Categories.PARTNER){
+    console.log("add new partner");
     this.partners.controls.push(this.formBuilder.group({
       title: itemData.title,
       path:null
