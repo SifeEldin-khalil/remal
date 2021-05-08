@@ -120,7 +120,7 @@
                 </div>
                 <div formGroupName="productsGroup">
                     <div formArrayName="products">
-                        <div class="row col-md-12">
+                        <div style="overflow: scroll; height: 750px;" class="row mb-5 col-md-12">
                             <div class="col-md-4 mt-5" *ngFor="let p of products.controls; let i=index">
                                 <div [formGroupName]="i">
                                     <mat-form-field class="example-full-width" appearance="outline">
