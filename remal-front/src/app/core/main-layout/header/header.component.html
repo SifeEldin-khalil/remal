@@ -4,6 +4,16 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link nav-items" *ngIf="flagAdmin" (click)="signout()">Logout
+              </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-items" *ngIf="flagAdmin" routerLink="/Admin/Dashboard">Dashboard
+              </a>
+            </li>
+        </ul>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav  ml-auto">
                 <li class="nav-item">
@@ -26,13 +36,13 @@
                         <label class="dropdown-label">Egypt</label>
                         <a class="dropdown-item" [routerLink]="['/Egypt/Projects']">Projects</a>
                         <a class="dropdown-item" [routerLink]="['/Egypt/Lighting']">Lighting</a>
-                        <a class="dropdown-item" [routerLink]="['/Egypt/Food&Beverage']">Food & Beverage</a>
+                        <a class="dropdown-item" [routerLink]="['/Egypt/FoodBeverage']">Food & Beverage</a>
                         <a class="dropdown-item" [routerLink]="['/Egypt/RealEstate']">Real Estate</a>
                         <div class="dropdown-divider"></div>
                         <label class="dropdown-label">Gulf</label>
                         <a class="dropdown-item" [routerLink]="['/Gulf/Projects']">Projects</a>
                         <a class="dropdown-item" [routerLink]="['/Gulf/FirstClass']">First Class</a>
-                        <a class="dropdown-item" [routerLink]="['/Gulf/Food&Beverage']">Food & Beverage</a>
+                        <a class="dropdown-item" [routerLink]="['/Gulf/FoodBeverage']">Food & Beverage</a>
                         <a class="dropdown-item" [routerLink]="['/Gulf/Security']">Security</a>
                     </div>
                 </li>

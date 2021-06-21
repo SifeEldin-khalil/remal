@@ -38,11 +38,11 @@ const express = require("express");
 const app = express();
 
 global.__basedir = __dirname;
-var corsOptions = {
-    origin: "http://localhost:3000"
-};
+// var corsOptions = {
+//     origin: "http://localhost:3000"
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 const initRoutes = require("./src/routes");
 
