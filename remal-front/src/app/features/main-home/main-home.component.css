@@ -20,3 +20,42 @@
     background: #f7f7f7;
     position: relative;
 }
+
+@media only screen and (width: 768px) {
+    .overlay-text {
+        font-size: 2vw;
+        /* float:right; */
+        margin-left: 40%;
+        width: 65%;
+        padding: 5vw;
+        top: 15vw;
+        background: #f7f7f7;
+        position: relative;
+    }
+}
+
+@media only screen and (width: 425px) {
+    .overlay-text {
+        font-size: 2vw;
+        /* float:right; */
+        margin-left: 40%;
+        width: 65%;
+        padding: 5vw;
+        top: 25vw;
+        background: #f7f7f7;
+        position: relative;
+    }
+}
+
+@media only screen and (width: 375px) {
+    .overlay-text {
+        font-size: 2vw;
+        /* float:right; */
+        margin-left: 40%;
+        width: 65%;
+        padding: 5vw;
+        top: 30vw;
+        background: #f7f7f7;
+        position: relative;
+    }
+}
