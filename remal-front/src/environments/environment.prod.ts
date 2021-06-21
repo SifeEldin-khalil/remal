@@ -1,7 +1,7 @@
 export const environment = {
   //need to change to server ip
-  apiUrl: 'http://localhost:3000',
-  apiUrlImage:'http://localhost:3000/Api/Files?name=',
+  apiUrl: 'https://www.remal-intl.com',
+  apiUrlImage:'https://www.remal-intl.com/Api/Files?name=',
   production: true,
   firebaseConfig:{
     apiKey: "AIzaSyCaD_2ZYeVdZpcRTKNDLNtEUW7yqqViCDA",
