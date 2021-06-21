@@ -21,40 +21,53 @@
     position: relative;
 }
 
-@media only screen and (width: 768px) {
+@media only screen and (max-width: 768px) {
     .overlay-text {
         font-size: 2vw;
         /* float:right; */
         margin-left: 40%;
         width: 65%;
-        padding: 5vw;
+        padding: 5vw 1vw;
         top: 15vw;
         background: #f7f7f7;
         position: relative;
     }
 }
 
-@media only screen and (width: 425px) {
+@media only screen and (max-width: 425px) {
     .overlay-text {
         font-size: 2vw;
         /* float:right; */
         margin-left: 40%;
         width: 65%;
-        padding: 5vw;
+        padding: 5vw 0.5vw;;
         top: 25vw;
         background: #f7f7f7;
         position: relative;
     }
 }
 
-@media only screen and (width: 375px) {
+@media only screen and (max-width: 375px) {
     .overlay-text {
         font-size: 2vw;
         /* float:right; */
         margin-left: 40%;
         width: 65%;
-        padding: 5vw;
+        padding: 10vw 0.5vw;
         top: 30vw;
+        background: #f7f7f7;
+        position: relative;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .overlay-text {
+        font-size: 2vw;
+        /* float:right; */
+        margin-left: 40%;
+        width: 65%;
+        padding: 15vw 0.5vw;
+        top: 40vw;
         background: #f7f7f7;
         position: relative;
     }
