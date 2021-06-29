@@ -68,7 +68,7 @@ export class SubCompanyComponent implements OnInit {
        this.companyName=this.getCompanyName(params['name']);
       }
       if (params['branch'] ){
-        this.companyBranch=params['branch'];
+        this.companyBranch=params['branch'].toLowerCase();
        }
        this.setAllFlags();
        this.getCompanyByNameAndBranch(this.companyName,this.companyBranch);
@@ -340,7 +340,7 @@ saveChangesWithFiles(){
   for (var i = 0; i < this.filesToUpload.length; i++) {
     formData.append("uploads[]", this.filesToUpload[i], this.filesToUpload[i].name);
   }
-  var companyPath:string=this.getCompanyNav(this.companyName);
+  var companyPath:string=this.getCompanyNav(this.companyName).toLowerCase();
   this.companyService.uploadFiles(formData,`${this.companyBranch}/${companyPath}`).subscribe((result:any)=>{
     for(let i=0;i<this.filesToUploadMetaData.length;i++){
       let item =this.filesToUploadMetaData[i];
