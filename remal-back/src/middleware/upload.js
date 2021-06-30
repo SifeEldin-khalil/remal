@@ -4,7 +4,7 @@ const maxSize = 10 * 1024 * 1024;
 
 let storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, `./uploads/${req.headers.path}`);
+        cb(null, `./uploads/${req.headers.path.toLowerCase()}`);
     },
     filename: (req, file, cb) => {
         console.log("each file to write", file);
